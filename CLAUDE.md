@@ -19,7 +19,9 @@ Full setup and current state for a new session: [docs/HANDOFF.md](docs/HANDOFF.m
 
 ## Shopify ↔ GitHub
 
-- The theme is connected to Shopify via the GitHub integration (branch `dev`, unpublished theme; `main` will be the live theme).
+- Branch flow: work and push on `dev` (draft theme "iamjulia — dev", previewed by the owner); the owner merges a PR
+  `dev` → `main`; `main` is connected to the published (live) theme. Never push to `main` directly.
+  Theme editor changes should be made only on the dev theme to avoid JSON merge conflicts.
   Every push updates the theme in the store; edits saved in the Shopify editor are committed back
   (mostly `config/settings_data.json`, `templates/*.json`). Always `git pull` before changing files.
 - Theme files must stay at the repository root.

@@ -29,8 +29,9 @@ Clone the content repo next to the theme: `../iamjulia-content`, and `git pull -
   Every push updates that theme; preview it in Shopify admin → Online Store → Themes → ⋯ → Preview.
 - Shopify commits editor changes back to the branch as `shopify[bot]` (mostly `config/settings_data.json`,
   `templates/*.json`). Always pull before editing. Sync was tested in both directions.
-- `claude/charming-fermi-vmuzjv` — the original branch, same content; the owner may disconnect and delete it.
-- `main` — not created yet; will become the live theme after the design is approved.
+- `claude/charming-fermi-vmuzjv` — the original branch; its Shopify theme is being removed. Don't use it.
+- `main` — created 2026-10-08 from `dev`; connected to the theme that gets published (live). Changes reach it
+  only through PRs `dev` → `main` merged by the owner.
 - The currently published theme in the store ("iamjulia.shop", stock Horizon from the Theme Store) is unrelated
   to this repo — don't touch it.
 
