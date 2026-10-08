@@ -22,3 +22,9 @@ simple marks: three dots, pennant, rainbow, bunting, candle. Generators: `tools/
 The owner wants a cornflower (василёк) motif for packaging and branding. Drafts: flower mark (colour and
 one-colour stamp), flower + Quicksand wordmark, Fraunces wordmark with a cornflower i-dot, round packaging sticker.
 Generator: `tools/logo_cornflower.py`.
+
+## Round 4: Fredoka + cornflower i-dot (`drafts/fr-cf-*`)
+
+Owner picked the Fredoka wordmark with the cornflower as the dot of the i. Variants: A cornflower on the first i,
+other dots ink; B other dots blue; C cornflowers on i, j, i; plus a cream version of A for dark backgrounds.
+Generator: `tools/logo_fredoka_cornflower.py`.

@@ -21,44 +21,45 @@ def flower(cx, cy, scale=1.0, n=8, color=BLUE, inner=BLUE2, center=CENTER, mono=
 def svg(name, w, h, body):
     open(f'logo/{name}.svg', 'w').write(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" role="img" aria-label="iamjulia">{body}</svg>\n')
 
-# 1. flower mark (colour) and one-colour stamp version
-svg('cf-1-flower', 120, 120, flower(60, 60, 1.35))
-svg('cf-2-flower-mono', 120, 120, flower(60, 60, 1.35, mono=INK))
+if __name__ == '__main__':
+    # 1. flower mark (colour) and one-colour stamp version
+    svg('cf-1-flower', 120, 120, flower(60, 60, 1.35))
+    svg('cf-2-flower-mono', 120, 120, flower(60, 60, 1.35, mono=INK))
 
-# 3. flower + wordmark (Quicksand, plain letters)
-q = L.load('fonts/Quicksand.ttf', {'wght': 600})
-d, w, _ = L.word(q, 'iamjulia', 100, 130, 100, dots=False)
-svg('cf-3-flower-quicksand', round(130 + w + 12), 140, flower(62, 70, 1.45) + f'<path fill="{INK}" d="{d}"/>')
+    # 3. flower + wordmark (Quicksand, plain letters)
+    q = L.load('fonts/Quicksand.ttf', {'wght': 600})
+    d, w, _ = L.word(q, 'iamjulia', 100, 130, 100, dots=False)
+    svg('cf-3-flower-quicksand', round(130 + w + 12), 140, flower(62, 70, 1.45) + f'<path fill="{INK}" d="{d}"/>')
 
-# 4. Fraunces wordmark: the first i dot becomes a small cornflower
-fr = L.load('fonts/Fraunces.ttf', {"wght": 620, "opsz": 72, "SOFT": 100, "WONK": 0})
-d, w, dots = L.word(fr, 'iamjulia', 120, 12, 135, dots=True)
-cx, cy, r = dots[0]
-body = f'<path fill="{INK}" d="{d}"/>' + flower(round(cx, 1), round(cy - 6, 1), 0.62) + ''.join(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{rr:.1f}" fill="{BLUE}"/>' for x, y, rr in dots[1:])
-svg('cf-4-fraunces-i', round(w + 24), 165, body)
+    # 4. Fraunces wordmark: the first i dot becomes a small cornflower
+    fr = L.load('fonts/Fraunces.ttf', {"wght": 620, "opsz": 72, "SOFT": 100, "WONK": 0})
+    d, w, dots = L.word(fr, 'iamjulia', 120, 12, 135, dots=True)
+    cx, cy, r = dots[0]
+    body = f'<path fill="{INK}" d="{d}"/>' + flower(round(cx, 1), round(cy - 6, 1), 0.62) + ''.join(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{rr:.1f}" fill="{BLUE}"/>' for x, y, rr in dots[1:])
+    svg('cf-4-fraunces-i', round(w + 24), 165, body)
 
-# 5. round sticker for packaging: text on a circle + flower in the middle
-def ring_text(font, text, cx, cy, radius, size, start_deg):
-    gs = font.getGlyphSet(); cmap = font.getBestCmap(); hmtx = font['hmtx']; upm = font['head'].unitsPerEm; s = size / upm
-    total = sum(hmtx[cmap[ord(c)]][0] for c in text) * s
-    ang = start_deg - math.degrees(total / radius) / 2
-    out = []
-    from fontTools.pens.svgPathPen import SVGPathPen
-    from fontTools.pens.transformPen import TransformPen
-    for ch in text:
-        g = cmap[ord(ch)]; adv = hmtx[g][0] * s
-        mid = ang + math.degrees(adv / 2 / radius); th = math.radians(mid)
-        px, py = cx + radius * math.sin(th), cy - radius * math.cos(th)
-        rot = th
-        # glyph local: centre horizontally, baseline on circle, rotated tangentially
-        c, sn = math.cos(rot), math.sin(rot)
-        pen = SVGPathPen(gs)
-        t = (s * c, s * sn, s * sn, -s * c, px - (adv / 2) * c, py - (adv / 2) * sn)
-        gs[g].draw(TransformPen(pen, t))
-        out.append(re.sub(r'-?\d+\.\d+', lambda m: f'{float(m.group()):.1f}', pen.getCommands()))
-        ang += math.degrees(adv / radius)
-    return ' '.join(out)
-txt = ring_text(q, 'IAMJULIA  •  PARTY DECORATIONS  •', 120, 120, 92, 19, 0)
-body = (f'<circle cx="120" cy="120" r="118" fill="{CREAM}"/><circle cx="120" cy="120" r="112" fill="none" stroke="{BLUE}" stroke-width="3"/>'
-        f'<path fill="{INK}" d="{txt}"/>' + flower(120, 120, 1.55))
-svg('cf-5-sticker', 240, 240, body)
+    # 5. round sticker for packaging: text on a circle + flower in the middle
+    def ring_text(font, text, cx, cy, radius, size, start_deg):
+        gs = font.getGlyphSet(); cmap = font.getBestCmap(); hmtx = font['hmtx']; upm = font['head'].unitsPerEm; s = size / upm
+        total = sum(hmtx[cmap[ord(c)]][0] for c in text) * s
+        ang = start_deg - math.degrees(total / radius) / 2
+        out = []
+        from fontTools.pens.svgPathPen import SVGPathPen
+        from fontTools.pens.transformPen import TransformPen
+        for ch in text:
+            g = cmap[ord(ch)]; adv = hmtx[g][0] * s
+            mid = ang + math.degrees(adv / 2 / radius); th = math.radians(mid)
+            px, py = cx + radius * math.sin(th), cy - radius * math.cos(th)
+            rot = th
+            # glyph local: centre horizontally, baseline on circle, rotated tangentially
+            c, sn = math.cos(rot), math.sin(rot)
+            pen = SVGPathPen(gs)
+            t = (s * c, s * sn, s * sn, -s * c, px - (adv / 2) * c, py - (adv / 2) * sn)
+            gs[g].draw(TransformPen(pen, t))
+            out.append(re.sub(r'-?\d+\.\d+', lambda m: f'{float(m.group()):.1f}', pen.getCommands()))
+            ang += math.degrees(adv / radius)
+        return ' '.join(out)
+    txt = ring_text(q, 'IAMJULIA  •  PARTY DECORATIONS  •', 120, 120, 92, 19, 0)
+    body = (f'<circle cx="120" cy="120" r="118" fill="{CREAM}"/><circle cx="120" cy="120" r="112" fill="none" stroke="{BLUE}" stroke-width="3"/>'
+            f'<path fill="{INK}" d="{txt}"/>' + flower(120, 120, 1.55))
+    svg('cf-5-sticker', 240, 240, body)
