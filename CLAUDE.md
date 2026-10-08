@@ -2,6 +2,8 @@
 
 Theme for the iamjulia.shop store, based on Shopify Horizon v4.2.0 (upstream Shopify/horizon @ 5acd1b6).
 
+Full setup and current state for a new session: [docs/HANDOFF.md](docs/HANDOFF.md).
+
 ## Environment notes (cloud sessions)
 
 - **Plugins are not available** in this environment. The official Shopify AI Toolkit skill is vendored
