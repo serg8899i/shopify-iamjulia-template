@@ -28,3 +28,9 @@ Generator: `tools/logo_cornflower.py`.
 Owner picked the Fredoka wordmark with the cornflower as the dot of the i. Variants: A cornflower on the first i,
 other dots ink; B other dots blue; C cornflowers on i, j, i; plus a cream version of A for dark backgrounds.
 Generator: `tools/logo_fredoka_cornflower.py`.
+
+## Round 5: chosen direction B, refined (`drafts/fr-b2-*`)
+
+Cornflower sits right on top of the i stem (the stem reads as its stalk), rotated 22.5 degrees so no petal points
+straight down and the stem passes between the two lower petals; j and second i dots are cornflower blue.
+`close` = centre 22px above the stem, `closer` = 15px. Generator: `tools/logo_fredoka_b.py`.

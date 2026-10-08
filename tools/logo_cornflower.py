@@ -6,10 +6,10 @@ INK = '#3A322B'; BLUE = '#4E72D9'; BLUE2 = '#7C9BEA'; CENTER = '#3B3A8C'; CREAM 
 def petal_path():
     return 'M-1.8 0 L-7.6 -25 L-5.4 -29.5 L-3.4 -25.8 L-1.4 -30.5 L0 -26.6 L1.4 -30.5 L3.4 -25.8 L5.4 -29.5 L7.6 -25 L1.8 0 Z'
 
-def flower(cx, cy, scale=1.0, n=8, color=BLUE, inner=BLUE2, center=CENTER, mono=None):
+def flower(cx, cy, scale=1.0, n=8, color=BLUE, inner=BLUE2, center=CENTER, mono=None, rot=0.0):
     parts = []
     for i in range(n):
-        a = 360 / n * i
+        a = 360 / n * i + rot
         c = mono or (color if i % 2 == 0 else inner)
         parts.append(f'<path d="{petal_path()}" fill="{c}" stroke="{CREAM}" stroke-width="1.4" stroke-linejoin="round" transform="translate({cx} {cy}) rotate({a:.1f}) scale({scale}) translate(0 -8)"/>')
     parts.append(f'<circle cx="{cx}" cy="{cy}" r="{8.5*scale:.1f}" fill="{mono or center}" stroke="{CREAM}" stroke-width="{1.4*scale:.1f}"/>')
