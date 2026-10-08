@@ -16,7 +16,7 @@ Theme for the iamjulia.shop store, based on Shopify Horizon v4.2.0 (upstream Sho
 
 ## Shopify ↔ GitHub
 
-- The theme is connected to Shopify via the GitHub integration (branch `claude/charming-fermi-vmuzjv`).
+- The theme is connected to Shopify via the GitHub integration (branch `dev`, unpublished theme; `main` will be the live theme).
   Every push updates the theme in the store; edits saved in the Shopify editor are committed back
   (mostly `config/settings_data.json`, `templates/*.json`). Always `git pull` before changing files.
 - Theme files must stay at the repository root.
