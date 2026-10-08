@@ -101,7 +101,10 @@ const plan = await Promise.all(
       palette: img.palette && catalog.palettes[img.palette],
       main: img.role === 'main',
       path: join(args.content, img.file),
-      alt: img.alt,
+      // The product gallery hides photos of other palettes by this alt prefix (snippets/product-media-gallery-content.liquid).
+      alt: img.palette && !img.alt.startsWith(`${catalog.palettes[img.palette]} `)
+        ? `${catalog.palettes[img.palette]} palette: ${img.alt}`
+        : img.alt,
     }));
     return { product, card, images };
   }),

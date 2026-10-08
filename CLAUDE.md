@@ -48,6 +48,9 @@ Full setup and current state for a new session: [docs/HANDOFF.md](docs/HANDOFF.m
 - Deliberate Horizon core edits (re-apply when merging upstream): `sections/password-footer.liquid` —
   `show_powered_by` checkbox (default off) wraps the "powered by Shopify" line; `overlay` (default on) puts
   short "Enter password" / "Log in" links over the full-screen password page photo.
+- Deliberate Horizon core edit: `snippets/product-media-gallery-content.liquid` — with "hide unselected variant media"
+  on, also hides photos whose alt text starts with another palette name ("Blue ", "Pastel ", "Pink "), so each palette
+  shows only its own gallery. `tools/seed-products.mjs` guarantees that alt prefix.
 - Known upstream issue: `sections/header.liquid` (lines 90, 94) reuses static block id `header-menu`;
   the validator reports it. Not ours — leave it.
 
