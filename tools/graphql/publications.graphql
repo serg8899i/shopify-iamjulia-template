@@ -2,6 +2,7 @@ query Publications {
   publications(first: 20) {
     nodes {
       id
+      name
       catalog {
         title
       }

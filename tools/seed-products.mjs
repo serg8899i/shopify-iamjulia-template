@@ -123,7 +123,9 @@ const store = process.env.SHOPIFY_STORE;
 const api = client(store, await getToken(store));
 
 const publications = (await api(await gql('publications'))).publications.nodes;
-const onlineStore = publications.find((p) => p.catalog?.title === 'Online Store');
+const onlineStore = publications.find(
+  (p) => p.name === 'Online Store' || /(^|for )Online Store$/.test(p.catalog?.title ?? ''),
+);
 if (!onlineStore) console.warn('Online Store publication not found; products will not be published.');
 
 const productSetQuery = await gql('product-set');
