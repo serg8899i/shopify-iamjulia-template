@@ -240,12 +240,17 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "ij_personalization": {
+              "type": "ij-personalization",
+              "settings": {}
             }
           },
           "block_order": [
             "group_icgrde",
             "divider_VJhene",
             "variant_picker_R3rGDr",
+            "ij_personalization",
             "buy_buttons_eYQEYi",
             "text_aEtTtq"
           ]

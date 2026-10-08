@@ -1,0 +1,145 @@
+<div class="section section--page-width ij-faq">
+  <div class="ij-faq__inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="ij-faq__heading">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+
+    <div class="ij-faq__list">
+      {%- for block in section.blocks -%}
+        <details class="ij-faq__item" {{ block.shopify_attributes }}>
+          <summary class="ij-faq__question">{{ block.settings.question | escape }}</summary>
+          <div class="ij-faq__answer">{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .ij-faq {
+    padding-block: clamp(40px, 7vw, 96px);
+  }
+
+  .ij-faq__inner {
+    max-width: 760px;
+    margin-inline: auto;
+    width: 100%;
+  }
+
+  .ij-faq__heading {
+    margin: 0 0 24px;
+    text-align: center;
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+    line-height: 1.1;
+  }
+
+  .ij-faq__item {
+    border-bottom: 1px solid rgb(var(--color-foreground-rgb) / 0.12);
+  }
+
+  .ij-faq__question {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 0;
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+
+  .ij-faq__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .ij-faq__question::after {
+    content: '+';
+    font-size: 1.4rem;
+    line-height: 1;
+    transition: transform 0.2s ease;
+  }
+
+  .ij-faq__item[open] .ij-faq__question::after {
+    transform: rotate(45deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ij-faq__question::after {
+      transition: none;
+    }
+  }
+
+  .ij-faq__answer {
+    padding-bottom: 18px;
+    opacity: 0.85;
+  }
+
+  .ij-faq__answer p {
+    margin: 0 0 8px;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "FAQ",
+  "tag": "section",
+  "class": "ij-faq-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Questions"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Answer</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        {
+          "type": "question",
+          "settings": {
+            "question": "Can I personalize the name?",
+            "answer": "<p>Yes. Enter your child's name when you order and it goes on the banner. The names in our photos are samples.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "What's in the Decoration Set?",
+            "answer": "<p>Five strands: the HAPPY BIRTHDAY and name banner (2 lines), two hanging strands of 6 pieces each, and one table garland.</p>"
+          }
+        },
+        {
+          "type": "question",
+          "settings": {
+            "question": "Are toppers included?",
+            "answer": "<p>Cake and cupcake toppers come with the Complete Party Set. You can also order them separately.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

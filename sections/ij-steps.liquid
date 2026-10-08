@@ -1,0 +1,140 @@
+<div class="section section--page-width ij-steps">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="ij-steps__heading">{{ section.settings.heading | escape }}</h2>
+  {%- endif -%}
+
+  <ol class="ij-steps__list">
+    {%- for block in section.blocks -%}
+      <li class="ij-steps__item" {{ block.shopify_attributes }}>
+        <span class="ij-steps__number" aria-hidden="true">{{ forloop.index }}</span>
+        <h3 class="ij-steps__title">{{ block.settings.title | escape }}</h3>
+        {%- if block.settings.text != blank -%}
+          <p class="ij-steps__text">{{ block.settings.text | escape }}</p>
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ol>
+</div>
+
+{% stylesheet %}
+  .ij-steps {
+    padding-block: clamp(40px, 7vw, 96px);
+  }
+
+  .ij-steps__heading {
+    margin: 0 0 clamp(24px, 4vw, 48px);
+    text-align: center;
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+    line-height: 1.1;
+  }
+
+  .ij-steps__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 20px;
+    counter-reset: none;
+  }
+
+  @media screen and (min-width: 750px) {
+    .ij-steps__list {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+  }
+
+  .ij-steps__item {
+    padding: 24px;
+    border-radius: 20px;
+    background: rgb(var(--color-foreground-rgb) / 0.04);
+  }
+
+  .ij-steps__number {
+    display: inline-grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-family: var(--font-heading--family);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-background);
+    background: var(--ij-accent, var(--color-foreground));
+  }
+
+  .ij-steps__title {
+    margin: 14px 0 6px;
+    font-family: var(--font-heading--family);
+    font-size: 1.25rem;
+  }
+
+  .ij-steps__text {
+    margin: 0;
+    opacity: 0.8;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "How it works",
+  "tag": "section",
+  "class": "ij-steps-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "How it works"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Step"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "How it works",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "title": "Choose your set",
+            "text": "Banner only, the Decoration Set, or the Complete Set with cake and cupcake toppers."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Pick a palette",
+            "text": "Blue, Pastel or Pink — every piece in a palette matches."
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Add your child's name",
+            "text": "Type the name when you order and we'll personalize the banner."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

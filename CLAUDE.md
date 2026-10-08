@@ -10,7 +10,8 @@ Theme for the iamjulia.shop store, based on Shopify Horizon v4.2.0 (upstream Sho
   (Node's fetch ignores HTTPS_PROXY otherwise; telemetry stays off). Never run `log_skill_use.mjs`.
 - Install the skill's dependencies once per session: `npm i --prefix .claude/skills/shopify`.
 - Validate theme files before every push:
-  `node .claude/skills/shopify/scripts/validate.mjs --api liquid --theme-path . --files <rel1,rel2>`
+  `node .claude/skills/shopify/scripts/validate.mjs --api liquid --theme-path "$PWD" --files <rel1,rel2>`
+  (the theme path must be absolute; `.` fails).
 - Network allows `shopify.dev`, `*.shopify.com`, `*.myshopify.com`. No Theme Access token is configured,
   so `shopify theme push` from here is not set up; deployment goes through the GitHub integration.
 
@@ -25,9 +26,14 @@ Theme for the iamjulia.shop store, based on Shopify Horizon v4.2.0 (upstream Sho
 
 - Don't edit Horizon core files (`assets/base.css`, core JS, stock sections/blocks) unless unavoidable —
   it breaks merging upstream Horizon updates.
-- Put custom blocks in `blocks/` with the `ij-` prefix, custom sections in `sections/` with `ij-`,
-  custom styles in `assets/ij-custom.css`, and use new template JSON files instead of editing stock ones.
-- Scope block CSS to the block's own ID/class; no block styles in global CSS.
+- Put custom blocks in `blocks/` with the `ij-` prefix and custom sections in `sections/` with `ij-`.
+  Each keeps its CSS in its own `{% stylesheet %}` with `ij-` class names (no layout edits needed).
+- Template JSON (`templates/*.json`) and `config/settings_data.json` are store configuration, not Horizon core:
+  editing them is fine (the homepage and product page are customized there), but pull first — the editor writes them too.
+- Brand: fonts Fraunces (headings) + Nunito Sans (body); palette background #FFFBF5, text #3A322B,
+  accent sage #56715A (primary buttons), sand #F5EDE2, border #E6DACB.
+- Product personalization: block `ij-personalization` (in `templates/product.json`) shows on products tagged
+  `personalized` and saves the line item property "Child's name".
 - Give every schema setting a sensible default; use proper setting types (`image_picker`, `color`, `range`, `select`).
 - Respect `prefers-reduced-motion` for any animation.
 - Known upstream issue: `sections/header.liquid` (lines 90, 94) reuses static block id `header-menu`;

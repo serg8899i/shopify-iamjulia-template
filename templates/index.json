@@ -9,84 +9,149 @@
  */
 {
   "sections": {
-    "hero_jVaWmY": {
-      "type": "hero",
+    "ij_hero": {
+      "type": "ij-hero",
+      "settings": {}
+    },
+    "ij_included": {
+      "type": "ij-whats-included",
+      "settings": {},
       "blocks": {
-        "text_YLPk4p": {
-          "type": "text",
-          "name": "t:names.heading",
+        "item_1": {
+          "type": "item",
           "settings": {
-            "text": "<p>Browse our latest products</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "{{ settings.color_palette.background }}",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "count": "2 lines",
+            "title": "Personalized banner",
+            "text": "HAPPY BIRTHDAY and your child's name"
+          }
         },
-        "button_H9gpTf": {
-          "type": "button",
-          "name": "t:names.button",
+        "item_2": {
+          "type": "item",
           "settings": {
-            "label": "Shop all",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button-custom",
-            "custom_button_background": "rgba(0, 0, 0, 0)",
-            "custom_button_text": "{{ settings.color_palette.background }}",
-            "custom_button_border": "{{ settings.color_palette.background }}",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
+            "count": "2 × 6",
+            "title": "Hanging decorations",
+            "text": "Two separate strands of six pieces each"
+          }
+        },
+        "item_3": {
+          "type": "item",
+          "settings": {
+            "count": "1 line",
+            "title": "Table garland",
+            "text": "For the front edge of the party table"
+          }
         }
       },
       "block_order": [
-        "text_YLPk4p",
-        "button_H9gpTf"
-      ],
-      "name": "t:names.hero",
-      "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "link": "",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "flex-end",
-        "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "medium",
-        "section_height_custom": 50,
-        "toggle_overlay": true,
-        "overlay_color": "#12121266",
-        "overlay_style": "solid",
-        "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
-      }
+        "item_1",
+        "item_2",
+        "item_3"
+      ]
+    },
+    "ij_palettes": {
+      "type": "ij-palettes",
+      "settings": {},
+      "blocks": {
+        "palette_1": {
+          "type": "palette",
+          "settings": {
+            "name": "Blue",
+            "text": "Navy, red, mustard and sage with stars and clouds.",
+            "color_1": "#3f5f9e",
+            "color_2": "#d9473f",
+            "color_3": "#e3b23c"
+          }
+        },
+        "palette_2": {
+          "type": "palette",
+          "settings": {
+            "name": "Pastel",
+            "text": "Soft rainbow pastels with flowers, clouds and hearts.",
+            "color_1": "#d9c6f0",
+            "color_2": "#fbe7a6",
+            "color_3": "#bfe3d4"
+          }
+        },
+        "palette_3": {
+          "type": "palette",
+          "settings": {
+            "name": "Pink",
+            "text": "Soft pinks with white letters and little rainbows.",
+            "color_1": "#f2bccb",
+            "color_2": "#fbe3e8",
+            "color_3": "#f1d3b6"
+          }
+        }
+      },
+      "block_order": [
+        "palette_1",
+        "palette_2",
+        "palette_3"
+      ]
+    },
+    "ij_steps": {
+      "type": "ij-steps",
+      "settings": {},
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Choose your set",
+            "text": "Banner only, the Decoration Set, or the Complete Set with cake and cupcake toppers."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "Pick a palette",
+            "text": "Blue, Pastel or Pink — every piece in a palette matches."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Add your child's name",
+            "text": "Type the name when you order and we'll personalize the banner."
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3"
+      ]
+    },
+    "ij_faq": {
+      "type": "ij-faq",
+      "settings": {},
+      "blocks": {
+        "question_1": {
+          "type": "question",
+          "settings": {
+            "question": "Can I personalize the name?",
+            "answer": "<p>Yes. Enter your child's name when you order and it goes on the banner. The names in our photos are samples.</p>"
+          }
+        },
+        "question_2": {
+          "type": "question",
+          "settings": {
+            "question": "What's in the Decoration Set?",
+            "answer": "<p>Five strands: the HAPPY BIRTHDAY and name banner (2 lines), two hanging strands of 6 pieces each, and one table garland.</p>"
+          }
+        },
+        "question_3": {
+          "type": "question",
+          "settings": {
+            "question": "Are toppers included?",
+            "answer": "<p>Cake and cupcake toppers come with the Complete Party Set. You can also order them separately.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_1",
+        "question_2",
+        "question_3"
+      ]
     },
     "product_list_fa6P9H": {
       "type": "product-list",
@@ -127,12 +192,12 @@
               "type": "_product-list-text",
               "name": "t:names.collection_title",
               "settings": {
-                "text": "<h3>{{ closest.collection.title }}</h3>",
+                "text": "<h2>Shop the party</h2>",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
-                "type_preset": "h4",
-                "font": "var(--font-body--family)",
+                "type_preset": "h3",
+                "font": "var(--font-heading--family)",
                 "font_size": "",
                 "line_height": "normal",
                 "letter_spacing": "normal",
@@ -276,7 +341,11 @@
     }
   },
   "order": [
-    "hero_jVaWmY",
-    "product_list_fa6P9H"
+    "ij_hero",
+    "product_list_fa6P9H",
+    "ij_included",
+    "ij_palettes",
+    "ij_steps",
+    "ij_faq"
   ]
 }
