@@ -73,6 +73,15 @@ Clone the content repo next to the theme: `../iamjulia-site-content`, and `git p
    menus. Still to do: About/FAQ pages; store name is "My Store" until the owner renames it in Settings → General.
 4. Later: theme-check in GitHub Actions, upstream Horizon merge workflow, `main` branch for the live theme.
 
+## Content monitoring
+
+- Routine `trig_01XSvGgVgY6XsRMnHqbQM2N3` ("iamjulia: проверка библиотеки контента") runs twice a day
+  (08:52 and 17:52 America/Los_Angeles) in a fresh session: clones both repos, runs
+  `check_site_updates.py` against `content-receipt.json` and reports new/changed heroes, removed IDs and changed
+  documents to the owner (push + email). It never integrates or publishes; the owner replies in that session.
+- After integrating content into `dev`, update `content-receipt.json` (fingerprints, site_target, stage) so the next
+  check starts from the new baseline.
+
 ## Known issues
 
 - Validator flags `sections/header.liquid` lines 90/94 (duplicate static block id `header-menu`) — upstream
