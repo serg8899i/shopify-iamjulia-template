@@ -41,22 +41,35 @@ Full setup and current state for a new session: [docs/HANDOFF.md](docs/HANDOFF.m
 - Brand: fonts Fraunces (headings) + Nunito Sans (body); palette background #FFFBF5, text #3A322B,
   accent sage #56715A (primary buttons), sand #F5EDE2, border #E6DACB.
 - Product personalization: block `ij-personalization` (in `templates/product.json`) shows on products tagged
-  `personalized` and saves the line item property "Child's name".
+  `personalized` and saves the line item property "Child's name"; a second instance (field type "age") shows on
+  products tagged `personalized-age` (cake topper, complete set — owner confirmed name + age on 2026-10-08) and saves "Age".
 - Give every schema setting a sensible default; use proper setting types (`image_picker`, `color`, `range`, `select`).
 - Respect `prefers-reduced-motion` for any animation.
 - Deliberate Horizon core edits (re-apply when merging upstream): `sections/password-footer.liquid` —
   `show_powered_by` checkbox (default off) wraps the "powered by Shopify" line; `overlay` (default on) puts
   short "Enter password" / "Log in" links over the full-screen password page photo.
+- Deliberate Horizon core edit: `snippets/product-media-gallery-content.liquid` — with "hide unselected variant media"
+  on, also hides photos whose alt text starts with another palette name ("Blue ", "Pastel ", "Pink "), so each palette
+  shows only its own gallery. `tools/seed-products.mjs` guarantees that alt prefix.
 - Known upstream issue: `sections/header.liquid` (lines 90, 94) reuses static block id `header-menu`;
   the validator reports it. Not ours — leave it.
 
 ## Products and content
 
-- Product photos, prompts and product facts live in `serg8899i/iamjulia-content` (clone to `../iamjulia-content`,
+- **Content handoff (Codex → Git → Claude → preview → owner permission → publish).** At the start of any site work:
+  `git -C ../iamjulia-site-content pull --ff-only`, read its `CLAUDE.md` and `docs/AGENT_WORKFLOW.md`, then run
+  `python3 -I ../iamjulia-site-content/tools/check_site_updates.py --receipt "$PWD/content-receipt.json"` and report
+  new/changed images and documents to the owner. Integrate into `dev`/preview only; publish only within the owner's
+  explicit permission for that exact set. Record what was integrated (content commit, fingerprints, stage, site target,
+  permission) in `content-receipt.json` here. Never mark something integrated that was only read.
+
+- Product photos, prompts and product facts live in `serg8899i/iamjulia-site-content` (clone to `../iamjulia-site-content`,
   `git pull --ff-only` first). Follow its `AGENTS.md`: don't invent sizes, quantities, materials; never use private
   raw GitHub URLs as image hosting; all images are candidates (`publication_ready: false`).
-- `tools/products.json` is the mockup catalog (English, USD, placeholder prices) and records the content commit used.
-- `tools/seed-products.mjs` upserts those products by handle via the Admin GraphQL API (client credentials grant
+- Products and their ordered photos come only from the library's cards `catalog/products/<handle>.json`
+  (its `docs/SITE_CONTRACT.md`), never from folders or hero IDs. `tools/products.json` holds only the site-side data
+  per handle: placeholder prices (USD), product type, English description, extra tags.
+- `tools/seed-products.mjs` merges cards + `tools/products.json` and upserts the products by handle via the Admin GraphQL API (client credentials grant
   from a Dev Dashboard app) and publishes them to the Online Store. Needs env `SHOPIFY_STORE`, `SHOPIFY_CLIENT_ID`,
   `SHOPIFY_CLIENT_SECRET`. Run: `NODE_USE_ENV_PROXY=1 node tools/seed-products.mjs` (`--dry-run` to preview).
 - Validate GraphQL in `tools/graphql/` with `node .claude/skills/shopify/scripts/validate.mjs --api admin --file <f>`.

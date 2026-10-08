@@ -1,12 +1,14 @@
 #!/usr/bin/env node
-// Creates or updates the mockup products from tools/products.json in the Shopify store,
-// uploading images from a local clone of serg8899i/iamjulia-content.
+// Creates or updates the store products from the content library's product cards
+// (serg8899i/iamjulia-site-content catalog/products/<handle>.json: title, personalization, ordered photos)
+// combined with tools/products.json (prices, product types, descriptions, extra tags).
 //
 // Env: SHOPIFY_STORE (xxx.myshopify.com), SHOPIFY_CLIENT_ID, SHOPIFY_CLIENT_SECRET
-// Run: NODE_USE_ENV_PROXY=1 node tools/seed-products.mjs [--content ../iamjulia-content] [--dry-run]
+// Run: NODE_USE_ENV_PROXY=1 node tools/seed-products.mjs [--content ../iamjulia-site-content] [--dry-run]
 //
 // Idempotent: productSet upserts by handle, so re-running replaces each product's media and variants.
 
+import { execFileSync } from 'node:child_process';
 import { readFile, stat } from 'node:fs/promises';
 import { openAsBlob } from 'node:fs';
 import { basename, dirname, join, resolve } from 'node:path';
@@ -18,7 +20,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 
 const { values: args } = parseArgs({
   options: {
-    content: { type: 'string', default: resolve(here, '../../iamjulia-content') },
+    content: { type: 'string', default: resolve(here, '../../iamjulia-site-content') },
     'dry-run': { type: 'boolean', default: false },
   },
 });
@@ -86,32 +88,32 @@ async function uploadImages(api, paths) {
 }
 
 const catalog = JSON.parse(await readFile(join(here, 'products.json'), 'utf8'));
-const manifest = JSON.parse(await readFile(join(args.content, 'manifest.json'), 'utf8'));
-const heroById = new Map(manifest.heroes.map((h) => [h.id, h]));
+const contentCommit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: args.content, encoding: 'utf8' }).trim();
+const readCard = async (handle) =>
+  JSON.parse(await readFile(join(args.content, 'catalog', 'products', `${handle}.json`), 'utf8'));
 
-// Resolve images per product: one entry per (palette, hero kind), primary version from the manifest.
-const plan = catalog.products.map((product) => {
-  const images = [];
-  for (const [palette, label] of Object.entries(catalog.palettes)) {
-    const name = catalog.sample_names[palette];
-    for (const kind of product.heroes) {
-      const id = `${name.toLowerCase()}-${kind}`;
-      const hero = heroById.get(id);
-      if (!hero) throw new Error(`Hero ${id} not found in manifest`);
-      images.push({
-        palette: label,
-        path: join(args.content, hero.primary),
-        alt: `${product.title} — ${label} palette, sample name ${name}`,
-      });
-    }
-  }
-  return { product, images };
-});
+// Photos come from the card in gallery order; palette keys (boys/neutral/pink) map to option labels.
+const plan = await Promise.all(
+  catalog.products.map(async (product) => {
+    const card = await readCard(product.handle);
+    if (card.status !== 'active') throw new Error(`Card ${product.handle} is ${card.status}; ask the owner first`);
+    const images = card.images.map((img) => ({
+      palette: img.palette && catalog.palettes[img.palette],
+      main: img.role === 'main',
+      path: join(args.content, img.file),
+      // The product gallery hides photos of other palettes by this alt prefix (snippets/product-media-gallery-content.liquid).
+      alt: img.palette && !img.alt.startsWith(`${catalog.palettes[img.palette]} `)
+        ? `${catalog.palettes[img.palette]} palette: ${img.alt}`
+        : img.alt,
+    }));
+    return { product, card, images };
+  }),
+);
 
 if (args['dry-run']) {
-  for (const { product, images } of plan) {
-    console.log(`${product.handle} ($${product.price})`);
-    for (const img of images) console.log(`  [${img.palette}] ${img.path}`);
+  for (const { product, card, images } of plan) {
+    console.log(`${product.handle} ($${product.price}) ${card.title}`);
+    for (const img of images) console.log(`  [${img.palette ?? 'all'}${img.main ? ', main' : ''}] ${img.path}`);
   }
   process.exit(0);
 }
@@ -131,7 +133,7 @@ if (!onlineStore) console.warn('Online Store publication not found; products wil
 const productSetQuery = await gql('product-set');
 const publishQuery = await gql('publish');
 
-for (const { product, images } of plan) {
+for (const { product, card, images } of plan) {
   console.log(`\n${product.handle}`);
   const urls = await uploadImages(api, images.map((i) => i.path));
   const files = images.map((img) => ({
@@ -140,22 +142,27 @@ for (const { product, images } of plan) {
     contentType: 'IMAGE',
     filename: basename(img.path),
   }));
-  const paletteNames = Object.values(catalog.palettes);
+  const paletteNames = Object.values(catalog.palettes).filter((p) => images.some((img) => img.palette === p));
 
   const data = await api(productSetQuery, {
     identifier: { handle: product.handle },
     input: {
-      title: product.title,
+      title: card.title,
       handle: product.handle,
       descriptionHtml: product.description_html,
       vendor: catalog.vendor,
       productType: product.product_type,
-      tags: ['mockup', `content-${catalog.content_commit.slice(0, 7)}`, ...(product.tags ?? [])],
+      tags: [
+        'mockup',
+        `content-${contentCommit.slice(0, 7)}`,
+        ...(card.personalized ? ['personalized'] : []),
+        ...(product.tags ?? []),
+      ],
       status: 'ACTIVE',
       productOptions: [{ name: 'Palette', position: 1, values: paletteNames.map((name) => ({ name })) }],
       files,
       variants: paletteNames.map((palette) => {
-        const first = files[images.findIndex((img) => img.palette === palette)];
+        const first = files[images.findIndex((img) => img.palette === palette && img.main)];
         return {
           optionValues: [{ optionName: 'Palette', name: palette }],
           price: product.price,

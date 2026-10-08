@@ -21,7 +21,7 @@ explains the whole setup and current state. Last updated 2026-10-08.
 | `shopify-iamjulia-template` | The theme (this repo). Horizon v4.2.0 base + `ij-` customizations, tools, docs. |
 | `iamjulia-content` (private) | Product photos, prompts, QA reviews, product facts. Produced by a separate GPT session on the owner's computer, which pushes updates. Read its `AGENTS.md` before using anything. |
 
-Clone the content repo next to the theme: `../iamjulia-content`, and `git pull --ff-only` before use.
+Clone the content repo next to the theme: `../iamjulia-site-content`, and `git pull --ff-only` before use.
 
 ## Branches and deployment
 
@@ -60,6 +60,8 @@ Clone the content repo next to the theme: `../iamjulia-content`, and `git pull -
   in the theme editor. Copy uses only confirmed facts.
 - Product page: `blocks/ij-personalization.liquid` ("Child's name" line item property) in `templates/product.json`,
   shown only for products tagged `personalized`.
+- Product cards in the content library (`catalog/products/*.json`, contract `docs/SITE_CONTRACT.md` there) define
+  products and photo order; `tools/products.json` keeps prices/types/descriptions/extra tags.
 - `tools/products.json` + `tools/seed-products.mjs`: 5 mockup products × 3 palettes, placeholder prices
   ($34/$69/$89/$24/$18), images uploaded via staged uploads (no public GitHub URLs), upsert by handle,
   published to Online Store. GraphQL in `tools/graphql/` validated against Admin API 2026-07.
@@ -72,6 +74,15 @@ Clone the content repo next to the theme: `../iamjulia-content`, and `git pull -
 3. Done: `tools/setup-navigation.mjs` created smart collections Party Sets / Toppers and set the main + footer
    menus. Still to do: About/FAQ pages; store name is "My Store" until the owner renames it in Settings → General.
 4. Later: theme-check in GitHub Actions, upstream Horizon merge workflow, `main` branch for the live theme.
+
+## Content monitoring
+
+- Routine `trig_01XSvGgVgY6XsRMnHqbQM2N3` ("iamjulia: проверка библиотеки контента") runs twice a day
+  (08:52 and 17:52 America/Los_Angeles) in a fresh session: clones both repos, runs
+  `check_site_updates.py` against `content-receipt.json` and reports new/changed heroes, removed IDs and changed
+  documents to the owner (push + email). It never integrates or publishes; the owner replies in that session.
+- After integrating content into `dev`, update `content-receipt.json` (fingerprints, site_target, stage) so the next
+  check starts from the new baseline.
 
 ## Known issues
 
