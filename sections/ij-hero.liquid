@@ -1,9 +1,10 @@
 {%- liquid
   assign image = section.settings.image
   assign height_class = 'ij-hero--' | append: section.settings.height
+  assign layout_class = 'ij-hero--' | append: section.settings.layout
 -%}
 
-<div class="section section--page-width ij-hero {{ height_class }}{% if image == blank %} ij-hero--no-image{% endif %}">
+<div class="section section--page-width ij-hero {{ height_class }} {{ layout_class }}{% if image == blank %} ij-hero--no-image{% endif %}">
   <div class="ij-hero__inner">
     <div class="ij-hero__media">
       {%- if image != blank -%}
@@ -12,7 +13,7 @@
           | image_url: width: 2400
           | image_tag:
             class: 'ij-hero__image',
-            sizes: '100vw',
+            sizes: '(min-width: 990px) 60vw, 100vw',
             widths: '750, 1100, 1500, 1800, 2400',
             loading: 'eager',
             fetchpriority: 'high',
@@ -168,6 +169,54 @@
     margin: 0;
   }
 
+  /* Split layout: text beside the full, uncropped photo so no product part is covered. */
+  .ij-hero--split .ij-hero__inner {
+    min-height: 0;
+    gap: clamp(20px, 4vw, 56px);
+    align-items: center;
+    overflow: visible;
+    border-radius: 0;
+  }
+
+  .ij-hero--split .ij-hero__media,
+  .ij-hero--split .ij-hero__content {
+    grid-area: auto;
+  }
+
+  .ij-hero--split .ij-hero__media {
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .ij-hero--split .ij-hero__image {
+    height: auto;
+    aspect-ratio: auto;
+  }
+
+  .ij-hero--split .ij-hero__placeholder {
+    aspect-ratio: 4 / 3;
+    border-radius: 20px;
+  }
+
+  .ij-hero--split .ij-hero__content,
+  .ij-hero--split:not(.ij-hero--no-image) .ij-hero__content {
+    align-self: center;
+    background: none;
+    color: var(--color-foreground);
+    padding: 0;
+    max-width: 560px;
+  }
+
+  @media screen and (min-width: 990px) {
+    .ij-hero--split .ij-hero__inner {
+      grid-template-columns: 5fr 7fr;
+    }
+
+    .ij-hero--split .ij-hero__media {
+      order: 2;
+    }
+  }
+
   .ij-hero__buttons {
     display: flex;
     flex-wrap: wrap;
@@ -200,8 +249,18 @@
     },
     {
       "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "split", "label": "Text beside image" },
+        { "value": "overlay", "label": "Text over image" }
+      ],
+      "default": "split"
+    },
+    {
+      "type": "select",
       "id": "height",
-      "label": "Height",
+      "label": "Height (text over image)",
       "options": [
         { "value": "medium", "label": "Medium" },
         { "value": "large", "label": "Large" }
