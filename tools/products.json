@@ -1,6 +1,6 @@
 {
   "_note": "Mockup catalog for theme development. Prices are placeholders chosen for layout only; sizes, quantities and materials are intentionally omitted until confirmed (see iamjulia-content docs/PRODUCT_OFFER.md). Images are candidates, not publication-approved.",
-  "content_repo": "serg8899i/iamjulia-content",
+  "content_repo": "serg8899i/iamjulia-site-content",
   "content_commit": "c2767757434eaf302801a01b4288a3d086d33af2",
   "vendor": "iamjulia",
   "palettes": {

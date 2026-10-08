@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 // Creates or updates the mockup products from tools/products.json in the Shopify store,
-// uploading images from a local clone of serg8899i/iamjulia-content.
+// uploading images from a local clone of serg8899i/iamjulia-site-content.
 //
 // Env: SHOPIFY_STORE (xxx.myshopify.com), SHOPIFY_CLIENT_ID, SHOPIFY_CLIENT_SECRET
-// Run: NODE_USE_ENV_PROXY=1 node tools/seed-products.mjs [--content ../iamjulia-content] [--dry-run]
+// Run: NODE_USE_ENV_PROXY=1 node tools/seed-products.mjs [--content ../iamjulia-site-content] [--dry-run]
 //
 // Idempotent: productSet upserts by handle, so re-running replaces each product's media and variants.
 
@@ -18,7 +18,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 
 const { values: args } = parseArgs({
   options: {
-    content: { type: 'string', default: resolve(here, '../../iamjulia-content') },
+    content: { type: 'string', default: resolve(here, '../../iamjulia-site-content') },
     'dry-run': { type: 'boolean', default: false },
   },
 });

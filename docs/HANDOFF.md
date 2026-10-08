@@ -21,7 +21,7 @@ explains the whole setup and current state. Last updated 2026-10-08.
 | `shopify-iamjulia-template` | The theme (this repo). Horizon v4.2.0 base + `ij-` customizations, tools, docs. |
 | `iamjulia-content` (private) | Product photos, prompts, QA reviews, product facts. Produced by a separate GPT session on the owner's computer, which pushes updates. Read its `AGENTS.md` before using anything. |
 
-Clone the content repo next to the theme: `../iamjulia-content`, and `git pull --ff-only` before use.
+Clone the content repo next to the theme: `../iamjulia-site-content`, and `git pull --ff-only` before use.
 
 ## Branches and deployment
 

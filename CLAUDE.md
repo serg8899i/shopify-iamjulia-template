@@ -52,7 +52,14 @@ Full setup and current state for a new session: [docs/HANDOFF.md](docs/HANDOFF.m
 
 ## Products and content
 
-- Product photos, prompts and product facts live in `serg8899i/iamjulia-content` (clone to `../iamjulia-content`,
+- **Content handoff (Codex → Git → Claude → preview → owner permission → publish).** At the start of any site work:
+  `git -C ../iamjulia-site-content pull --ff-only`, read its `CLAUDE.md` and `docs/AGENT_WORKFLOW.md`, then run
+  `python3 -I ../iamjulia-site-content/tools/check_site_updates.py --receipt "$PWD/content-receipt.json"` and report
+  new/changed images and documents to the owner. Integrate into `dev`/preview only; publish only within the owner's
+  explicit permission for that exact set. Record what was integrated (content commit, fingerprints, stage, site target,
+  permission) in `content-receipt.json` here. Never mark something integrated that was only read.
+
+- Product photos, prompts and product facts live in `serg8899i/iamjulia-site-content` (clone to `../iamjulia-site-content`,
   `git pull --ff-only` first). Follow its `AGENTS.md`: don't invent sizes, quantities, materials; never use private
   raw GitHub URLs as image hosting; all images are candidates (`publication_ready: false`).
 - `tools/products.json` is the mockup catalog (English, USD, placeholder prices) and records the content commit used.
