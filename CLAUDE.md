@@ -32,3 +32,14 @@ Theme for the iamjulia.shop store, based on Shopify Horizon v4.2.0 (upstream Sho
 - Respect `prefers-reduced-motion` for any animation.
 - Known upstream issue: `sections/header.liquid` (lines 90, 94) reuses static block id `header-menu`;
   the validator reports it. Not ours — leave it.
+
+## Products and content
+
+- Product photos, prompts and product facts live in `serg8899i/iamjulia-content` (clone to `../iamjulia-content`,
+  `git pull --ff-only` first). Follow its `AGENTS.md`: don't invent sizes, quantities, materials; never use private
+  raw GitHub URLs as image hosting; all images are candidates (`publication_ready: false`).
+- `tools/products.json` is the mockup catalog (English, USD, placeholder prices) and records the content commit used.
+- `tools/seed-products.mjs` upserts those products by handle via the Admin GraphQL API (client credentials grant
+  from a Dev Dashboard app) and publishes them to the Online Store. Needs env `SHOPIFY_STORE`, `SHOPIFY_CLIENT_ID`,
+  `SHOPIFY_CLIENT_SECRET`. Run: `NODE_USE_ENV_PROXY=1 node tools/seed-products.mjs` (`--dry-run` to preview).
+- Validate GraphQL in `tools/graphql/` with `node .claude/skills/shopify/scripts/validate.mjs --api admin --file <f>`.
