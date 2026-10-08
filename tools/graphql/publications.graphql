@@ -1,0 +1,10 @@
+query Publications {
+  publications(first: 20) {
+    nodes {
+      id
+      catalog {
+        title
+      }
+    }
+  }
+}

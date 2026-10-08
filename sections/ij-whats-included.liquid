@@ -1,0 +1,254 @@
+<div class="section section--page-width ij-included">
+  <div class="ij-included__grid{% if section.settings.image_side == 'right' %} ij-included__grid--reverse{% endif %}">
+    <div class="ij-included__media">
+      {%- if section.settings.image != blank -%}
+        {{
+          section.settings.image
+          | image_url: width: 1600
+          | image_tag: class: 'ij-included__image', sizes: '(min-width: 990px) 50vw, 100vw', loading: 'lazy'
+        }}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'ij-included__image ij-included__image--placeholder' }}
+      {%- endif -%}
+    </div>
+
+    <div class="ij-included__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="ij-included__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="ij-included__heading">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <div class="ij-included__text">{{ section.settings.text }}</div>
+      {%- endif -%}
+
+      <ol class="ij-included__list">
+        {%- for block in section.blocks -%}
+          <li class="ij-included__item" {{ block.shopify_attributes }}>
+            <span class="ij-included__count">{{ block.settings.count | escape }}</span>
+            <div>
+              <h3 class="ij-included__item-title">{{ block.settings.title | escape }}</h3>
+              {%- if block.settings.text != blank -%}
+                <p class="ij-included__item-text">{{ block.settings.text | escape }}</p>
+              {%- endif -%}
+            </div>
+          </li>
+        {%- endfor -%}
+      </ol>
+
+      {%- if section.settings.note != blank -%}
+        <div class="ij-included__note">{{ section.settings.note }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .ij-included {
+    padding-block: clamp(40px, 7vw, 96px);
+  }
+
+  .ij-included__grid {
+    display: grid;
+    gap: clamp(24px, 4vw, 64px);
+    align-items: center;
+  }
+
+  @media screen and (min-width: 990px) {
+    .ij-included__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .ij-included__grid--reverse .ij-included__media {
+      order: 2;
+    }
+  }
+
+  .ij-included__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+  }
+
+  .ij-included__image--placeholder {
+    aspect-ratio: 4 / 3;
+    background: rgb(var(--color-foreground-rgb) / 0.06);
+  }
+
+  .ij-included__eyebrow {
+    margin: 0 0 8px;
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    opacity: 0.75;
+  }
+
+  .ij-included__heading {
+    margin: 0 0 12px;
+    font-family: var(--font-heading--family);
+    font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+    line-height: 1.1;
+  }
+
+  .ij-included__text p {
+    margin: 0;
+  }
+
+  .ij-included__list {
+    list-style: none;
+    margin: 28px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+  }
+
+  .ij-included__item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    align-items: start;
+    padding: 16px 18px;
+    border-radius: 16px;
+    background: rgb(var(--color-foreground-rgb) / 0.04);
+  }
+
+  .ij-included__count {
+    min-width: 3.2em;
+    padding: 6px 10px;
+    border-radius: 999px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    background: var(--color-background);
+    border: 1px solid rgb(var(--color-foreground-rgb) / 0.15);
+  }
+
+  .ij-included__item-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-family: var(--font-heading--family);
+  }
+
+  .ij-included__item-text {
+    margin: 4px 0 0;
+    opacity: 0.8;
+  }
+
+  .ij-included__note {
+    margin-top: 20px;
+    font-size: 0.95rem;
+    opacity: 0.8;
+  }
+
+  .ij-included__note p {
+    margin: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "What's included",
+  "tag": "section",
+  "class": "ij-included-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_side",
+      "label": "Image position",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The Decoration Set"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Five strands, one coordinated look"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>No need to match decorations piece by piece — the set covers the whole party space.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "note",
+      "label": "Note",
+      "default": "<p>Cake and cupcake toppers are included in the Complete Party Set.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "count",
+          "label": "Count label",
+          "default": "×1"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Item"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "What's included",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "count": "2 lines",
+            "title": "Personalized banner",
+            "text": "HAPPY BIRTHDAY and your child's name"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "count": "2 × 6",
+            "title": "Hanging decorations",
+            "text": "Two separate strands of six pieces each"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "count": "1 line",
+            "title": "Table garland",
+            "text": "For the front edge of the party table"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

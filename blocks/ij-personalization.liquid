@@ -1,0 +1,160 @@
+{%- comment -%}
+  Personalization text field for the product page. The input sits outside the buy-buttons form and
+  joins it through the `form` attribute (Horizon's form id is BuyButtons-ProductForm-<section id>),
+  so the value is saved as a line item property.
+{%- endcomment -%}
+
+{%- liquid
+  assign show = true
+  if block.settings.visibility == 'tagged'
+    unless product.tags contains block.settings.tag
+      assign show = false
+    endunless
+  endif
+  if request.design_mode
+    assign show = true
+  endif
+  assign field_id = 'ij-personalization-' | append: block.id
+  assign form_id = 'BuyButtons-ProductForm-' | append: section.id
+-%}
+
+{%- if show and product -%}
+  <div class="ij-personalization" {{ block.shopify_attributes }}>
+    <label class="ij-personalization__label" for="{{ field_id }}">
+      {{- block.settings.label | escape -}}
+      {%- if block.settings.required %} <span aria-hidden="true">*</span>{% endif -%}
+    </label>
+    <input
+      class="ij-personalization__input"
+      type="text"
+      id="{{ field_id }}"
+      name="properties[{{ block.settings.property_name | escape }}]"
+      form="{{ form_id }}"
+      placeholder="{{ block.settings.placeholder | escape }}"
+      autocomplete="off"
+      {% if block.settings.limit_length %}
+        maxlength="{{ block.settings.max_length }}"
+      {% endif %}
+      {% if block.settings.required %}
+        required
+      {% endif %}
+    >
+    {%- if block.settings.help != blank -%}
+      <p class="ij-personalization__help">{{ block.settings.help | escape }}</p>
+    {%- endif -%}
+    {%- if request.design_mode and block.settings.visibility == 'tagged' -%}
+      <p class="ij-personalization__help">
+        Editor preview: shown on products tagged “{{ block.settings.tag | escape }}”.
+      </p>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .ij-personalization {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .ij-personalization__label {
+    font-weight: 600;
+  }
+
+  .ij-personalization__input {
+    width: 100%;
+    padding: 12px 14px;
+    font: inherit;
+    color: var(--color-input-text, var(--color-foreground));
+    background: var(--color-input-background, var(--color-background));
+    border: 1px solid rgb(var(--color-foreground-rgb) / 0.25);
+    border-radius: var(--style-border-radius-inputs, 12px);
+  }
+
+  .ij-personalization__input:focus-visible {
+    outline: 2px solid var(--color-foreground);
+    outline-offset: 2px;
+  }
+
+  .ij-personalization__help {
+    margin: 0;
+    font-size: 0.875rem;
+    opacity: 0.75;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Personalization",
+  "settings": [
+    {
+      "type": "select",
+      "id": "visibility",
+      "label": "Show on",
+      "options": [
+        { "value": "tagged", "label": "Products with a tag" },
+        { "value": "all", "label": "All products" }
+      ],
+      "default": "tagged"
+    },
+    {
+      "type": "text",
+      "id": "tag",
+      "label": "Product tag",
+      "default": "personalized"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "Child's name"
+    },
+    {
+      "type": "text",
+      "id": "property_name",
+      "label": "Order field name",
+      "info": "Shown on the order and in the cart.",
+      "default": "Child's name"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Placeholder",
+      "default": "e.g. Sofia"
+    },
+    {
+      "type": "text",
+      "id": "help",
+      "label": "Help text",
+      "default": "Please double-check the spelling."
+    },
+    {
+      "type": "checkbox",
+      "id": "required",
+      "label": "Required",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "limit_length",
+      "label": "Limit length",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "max_length",
+      "label": "Maximum characters",
+      "min": 4,
+      "max": 30,
+      "step": 1,
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Personalization"
+    }
+  ]
+}
+{% endschema %}
