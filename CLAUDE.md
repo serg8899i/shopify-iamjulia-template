@@ -41,7 +41,8 @@ Full setup and current state for a new session: [docs/HANDOFF.md](docs/HANDOFF.m
 - Brand: fonts Fraunces (headings) + Nunito Sans (body); palette background #FFFBF5, text #3A322B,
   accent sage #56715A (primary buttons), sand #F5EDE2, border #E6DACB.
 - Product personalization: block `ij-personalization` (in `templates/product.json`) shows on products tagged
-  `personalized` and saves the line item property "Child's name".
+  `personalized` and saves the line item property "Child's name"; a second instance (field type "age") shows on
+  products tagged `personalized-age` (cake topper, complete set — owner confirmed name + age on 2026-10-08) and saves "Age".
 - Give every schema setting a sensible default; use proper setting types (`image_picker`, `color`, `range`, `select`).
 - Respect `prefers-reduced-motion` for any animation.
 - Deliberate Horizon core edits (re-apply when merging upstream): `sections/password-footer.liquid` —
@@ -62,8 +63,10 @@ Full setup and current state for a new session: [docs/HANDOFF.md](docs/HANDOFF.m
 - Product photos, prompts and product facts live in `serg8899i/iamjulia-site-content` (clone to `../iamjulia-site-content`,
   `git pull --ff-only` first). Follow its `AGENTS.md`: don't invent sizes, quantities, materials; never use private
   raw GitHub URLs as image hosting; all images are candidates (`publication_ready: false`).
-- `tools/products.json` is the mockup catalog (English, USD, placeholder prices) and records the content commit used.
-- `tools/seed-products.mjs` upserts those products by handle via the Admin GraphQL API (client credentials grant
+- Products and their ordered photos come only from the library's cards `catalog/products/<handle>.json`
+  (its `docs/SITE_CONTRACT.md`), never from folders or hero IDs. `tools/products.json` holds only the site-side data
+  per handle: placeholder prices (USD), product type, English description, extra tags.
+- `tools/seed-products.mjs` merges cards + `tools/products.json` and upserts the products by handle via the Admin GraphQL API (client credentials grant
   from a Dev Dashboard app) and publishes them to the Online Store. Needs env `SHOPIFY_STORE`, `SHOPIFY_CLIENT_ID`,
   `SHOPIFY_CLIENT_SECRET`. Run: `NODE_USE_ENV_PROXY=1 node tools/seed-products.mjs` (`--dry-run` to preview).
 - Validate GraphQL in `tools/graphql/` with `node .claude/skills/shopify/scripts/validate.mjs --api admin --file <f>`.

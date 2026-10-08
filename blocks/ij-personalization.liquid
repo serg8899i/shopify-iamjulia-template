@@ -32,7 +32,11 @@
       form="{{ form_id }}"
       placeholder="{{ block.settings.placeholder | escape }}"
       autocomplete="off"
-      {% if block.settings.limit_length %}
+      {% if block.settings.field_type == 'age' %}
+        inputmode="numeric"
+        pattern="[0-9]{1,2}"
+        maxlength="2"
+      {% elsif block.settings.limit_length %}
         maxlength="{{ block.settings.max_length }}"
       {% endif %}
       {% if block.settings.required %}
@@ -103,6 +107,16 @@
       "id": "tag",
       "label": "Product tag",
       "default": "personalized"
+    },
+    {
+      "type": "select",
+      "id": "field_type",
+      "label": "Field type",
+      "options": [
+        { "value": "text", "label": "Text" },
+        { "value": "age", "label": "Age (1–2 digits)" }
+      ],
+      "default": "text"
     },
     {
       "type": "text",

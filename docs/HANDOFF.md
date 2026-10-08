@@ -60,6 +60,8 @@ Clone the content repo next to the theme: `../iamjulia-site-content`, and `git p
   in the theme editor. Copy uses only confirmed facts.
 - Product page: `blocks/ij-personalization.liquid` ("Child's name" line item property) in `templates/product.json`,
   shown only for products tagged `personalized`.
+- Product cards in the content library (`catalog/products/*.json`, contract `docs/SITE_CONTRACT.md` there) define
+  products and photo order; `tools/products.json` keeps prices/types/descriptions/extra tags.
 - `tools/products.json` + `tools/seed-products.mjs`: 5 mockup products × 3 palettes, placeholder prices
   ($34/$69/$89/$24/$18), images uploaded via staged uploads (no public GitHub URLs), upsert by handle,
   published to Online Store. GraphQL in `tools/graphql/` validated against Admin API 2026-07.

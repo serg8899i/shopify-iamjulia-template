@@ -244,6 +244,17 @@
             "ij_personalization": {
               "type": "ij-personalization",
               "settings": {}
+            },
+            "ij_personalization_age": {
+              "type": "ij-personalization",
+              "settings": {
+                "field_type": "age",
+                "tag": "personalized-age",
+                "label": "Child's age",
+                "property_name": "Age",
+                "placeholder": "e.g. 3",
+                "help": ""
+              }
             }
           },
           "block_order": [
@@ -251,6 +262,7 @@
             "divider_VJhene",
             "variant_picker_R3rGDr",
             "ij_personalization",
+            "ij_personalization_age",
             "buy_buttons_eYQEYi",
             "text_aEtTtq"
           ]

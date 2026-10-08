@@ -1,82 +1,48 @@
 {
-  "_note": "Mockup catalog for theme development. Prices are placeholders chosen for layout only; sizes, quantities and materials are intentionally omitted until confirmed (see iamjulia-content docs/PRODUCT_OFFER.md). Images are candidates, not publication-approved.",
+  "_note": "Site-side commerce data for the products defined by content cards (serg8899i/iamjulia-site-content catalog/products/<handle>.json). Cards own titles, personalization flag and the ordered photos; this file owns prices (placeholders), product types, descriptions and extra tags. Sizes, quantities and materials are omitted until confirmed. Images are candidates, not publication-approved.",
   "content_repo": "serg8899i/iamjulia-site-content",
-  "content_commit": "c2767757434eaf302801a01b4288a3d086d33af2",
   "vendor": "iamjulia",
   "palettes": {
     "boys": "Blue",
     "neutral": "Pastel",
     "pink": "Pink"
   },
-  "sample_names": {
-    "boys": "OLIVER",
-    "neutral": "SOFIA",
-    "pink": "KAROLINA"
-  },
   "products": [
     {
       "handle": "personalized-happy-birthday-banner",
-      "title": "Personalized Happy Birthday Name Banner",
       "product_type": "Party Banners",
       "price": "34.00",
-      "description_html": "<p>A two-line birthday banner: <strong>HAPPY BIRTHDAY</strong> on one line and your child's name on the other.</p><p>Choose a palette and enter the name when you order. The name in the photos is a sample.</p><p>This option includes the two banner lines only — no hanging decorations and no table garland.</p>",
-      "heroes": [
-        "banner-only"
-      ],
-      "tags": [
-        "personalized"
-      ]
+      "description_html": "<p>A two-line birthday banner: <strong>HAPPY BIRTHDAY</strong> on one line and your child's name on the other.</p><p>Choose a palette and enter the name when you order. The name in the photos is a sample.</p><p>This option includes the two banner lines only — no hanging decorations and no table garland.</p>"
     },
     {
       "handle": "birthday-party-decoration-set",
-      "title": "Birthday Party Decoration Set",
       "product_type": "Party Decoration Sets",
       "price": "69.00",
-      "description_html": "<p>One coordinated set that decorates the party space, so you don't have to match pieces yourself.</p><ul><li><strong>Personalized banner</strong> — HAPPY BIRTHDAY and your child's name (2 lines)</li><li><strong>Hanging decorations</strong> — 2 separate strands of 6 pieces each (12 pieces)</li><li><strong>Table garland</strong> — 1 strand for the front edge of the party table</li></ul><p>Five strands in total. Cake and cupcake toppers are not included in this option — see the Complete Party Set.</p>",
-      "heroes": [
-        "set-front"
-      ],
-      "tags": [
-        "personalized"
-      ]
+      "description_html": "<p>One coordinated set that decorates the party space, so you don't have to match pieces yourself.</p><ul><li><strong>Personalized banner</strong> — HAPPY BIRTHDAY and your child's name (2 lines)</li><li><strong>Hanging decorations</strong> — 2 separate strands of 6 pieces each (12 pieces)</li><li><strong>Table garland</strong> — 1 strand for the front edge of the party table</li></ul><p>Five strands in total. Cake and cupcake toppers are not included in this option — see the Complete Party Set.</p>"
     },
     {
       "handle": "complete-birthday-party-set",
-      "title": "Complete Birthday Party Set with Cake & Cupcake Toppers",
       "product_type": "Party Decoration Sets",
       "price": "89.00",
-      "description_html": "<p>Everything from the Birthday Party Decoration Set plus matching toppers for the cake and cupcakes.</p><ul><li><strong>Personalized banner</strong> — HAPPY BIRTHDAY and your child's name (2 lines)</li><li><strong>Hanging decorations</strong> — 2 strands of 6 pieces each</li><li><strong>Table garland</strong> — 1 strand for the party table</li><li><strong>Cake topper</strong> — personalized with your child's name</li><li><strong>Cupcake toppers</strong> — a matching set</li></ul>",
-      "heroes": [
-        "set-front",
-        "cake-front",
-        "cupcake-front"
-      ],
+      "description_html": "<p>Everything from the Birthday Party Decoration Set plus matching toppers for the cake and cupcakes.</p><ul><li><strong>Personalized banner</strong> — HAPPY BIRTHDAY and your child's name (2 lines)</li><li><strong>Hanging decorations</strong> — 2 strands of 6 pieces each</li><li><strong>Table garland</strong> — 1 strand for the party table</li><li><strong>Cake topper</strong> — personalized with your child's name and age</li><li><strong>Cupcake toppers</strong> — a matching set</li></ul>",
       "tags": [
-        "personalized"
+        "personalized-age"
       ]
     },
     {
       "handle": "personalized-birthday-cake-topper",
-      "title": "Personalized Birthday Cake Topper",
       "product_type": "Cake Toppers",
       "price": "24.00",
-      "description_html": "<p>A cake topper with a mini banner personalized with your child's name, in a palette that matches our party sets.</p><p>The name in the photos is a sample.</p>",
-      "heroes": [
-        "cake-front"
-      ],
+      "description_html": "<p>A cake topper personalized with your child's name and age, in a palette that matches our party sets.</p><p>The name and age in the photos are a sample.</p>",
       "tags": [
-        "personalized"
+        "personalized-age"
       ]
     },
     {
       "handle": "birthday-cupcake-toppers",
-      "title": "Birthday Cupcake Toppers",
       "product_type": "Cupcake Toppers",
       "price": "18.00",
-      "description_html": "<p>A set of cupcake toppers — rainbows, clouds and more — in a palette that matches our party sets.</p>",
-      "heroes": [
-        "cupcake-front"
-      ]
+      "description_html": "<p>A set of cupcake toppers — rainbows, clouds and more — in a palette that matches our party sets.</p>"
     }
   ]
 }
