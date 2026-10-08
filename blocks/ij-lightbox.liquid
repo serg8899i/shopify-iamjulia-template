@@ -40,11 +40,30 @@
     cursor: zoom-in;
   }
 
-  media-gallery.media-gallery--carousel slideshow-container {
-    padding: 6px;
-    background: #fff;
-    border-radius: 22px;
-    box-shadow: 0 8px 28px rgb(58 50 43 / 0.12);
+  media-gallery.media-gallery--carousel slideshow-slide .product-media {
+    border: 6px solid #fff;
+    border-radius: 18px;
+    box-shadow: 0 6px 22px rgb(58 50 43 / 0.16);
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  media-gallery.media-gallery--carousel slideshow-slide {
+    padding: 4px 10px 22px;
+  }
+
+  media-gallery.media-gallery--carousel slideshow-arrows .slideshow-control {
+    width: 44px;
+    height: 44px;
+    margin-inline: 18px;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    color: #3a322b;
+    background: rgb(255 251 245 / 0.92);
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 0.18);
+    opacity: 1;
   }
 
   media-gallery .slideshow-controls__thumbnails {
