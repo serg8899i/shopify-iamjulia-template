@@ -25,7 +25,9 @@ Clone the content repo next to the theme: `../iamjulia-content`, and `git pull -
 
 ## Branches and deployment
 
-- `dev` — working branch, connected to Shopify via the **GitHub integration** as an unpublished theme.
+- `dev` — working branch, connected to Shopify via the **GitHub integration** as an unpublished theme
+  (theme id `188995469557`, preview: https://iamjulia.shop/?preview_theme_id=188995469557; the store is
+  password-protected, the owner allowed using the storefront password for preview screenshots).
   Every push updates that theme; preview it in Shopify admin → Online Store → Themes → ⋯ → Preview.
 - Shopify commits editor changes back to the branch as `shopify[bot]` (mostly `config/settings_data.json`,
   `templates/*.json`). Always pull before editing. Sync was tested in both directions.
@@ -67,7 +69,8 @@ Clone the content repo next to the theme: `../iamjulia-content`, and `git pull -
 1. Done: `personalized` tag added (catalog + live products).
 2. Owner reviews the `dev` preview; iterate on design from their screenshots. Nothing has been visually
    verified yet — only validator-checked.
-3. Header/footer navigation and pages (About, FAQ, Contact) via Admin API.
+3. Done: `tools/setup-navigation.mjs` created smart collections Party Sets / Toppers and set the main + footer
+   menus. Still to do: About/FAQ pages; store name is "My Store" until the owner renames it in Settings → General.
 4. Later: theme-check in GitHub Actions, upstream Horizon merge workflow, `main` branch for the live theme.
 
 ## Known issues

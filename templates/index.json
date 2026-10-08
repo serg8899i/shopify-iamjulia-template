@@ -11,11 +11,18 @@
   "sections": {
     "ij_hero": {
       "type": "ij-hero",
-      "settings": {}
+      "settings": {
+        "image": "shopify://shop_images/night-front-natural-props-v3_fa2290e4-e8b1-4cfd-b914-6261bba61013.png",
+        "layout": "split",
+        "button_link": "shopify://collections/party-sets"
+      }
     },
     "ij_included": {
       "type": "ij-whats-included",
-      "settings": {},
+      "settings": {
+        "image": "shopify://shop_images/night-front-hydrangeas-raised-v5_1cba2df9-70af-460b-9864-58d95fbb2d7a.png",
+        "image_side": "left"
+      },
       "blocks": {
         "item_1": {
           "type": "item",
@@ -59,7 +66,8 @@
             "text": "Navy, red, mustard and sage with stars and clouds.",
             "color_1": "#3f5f9e",
             "color_2": "#d9473f",
-            "color_3": "#e3b23c"
+            "color_3": "#e3b23c",
+            "image": "shopify://shop_images/night-banner-only-even-light-v3_cb2e608f-7ac2-44ca-817d-ecf46c7a0ed3.png"
           }
         },
         "palette_2": {
@@ -69,7 +77,8 @@
             "text": "Soft rainbow pastels with flowers, clouds and hearts.",
             "color_1": "#d9c6f0",
             "color_2": "#fbe7a6",
-            "color_3": "#bfe3d4"
+            "color_3": "#bfe3d4",
+            "image": "shopify://shop_images/night-front-v1_90cf90fc-e6db-471c-b1ce-a815f75f9f99.png"
           }
         },
         "palette_3": {
@@ -79,7 +88,8 @@
             "text": "Soft pinks with white letters and little rainbows.",
             "color_1": "#f2bccb",
             "color_2": "#fbe3e8",
-            "color_3": "#f1d3b6"
+            "color_3": "#f1d3b6",
+            "image": "shopify://shop_images/night-banner-only-v1_12b9a189-270f-467d-8919-8bbffb0e127a.png"
           }
         }
       },
@@ -325,10 +335,10 @@
         "layout_type": "grid",
         "carousel_on_mobile": false,
         "max_products": 8,
-        "columns": 4,
+        "columns": 5,
         "mobile_columns": "2",
         "mobile_card_size": "60cqw",
-        "columns_gap": 8,
+        "columns_gap": 16,
         "rows_gap": 24,
         "icons_style": "arrow",
         "icons_shape": "none",
