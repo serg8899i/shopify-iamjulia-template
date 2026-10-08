@@ -16,3 +16,9 @@ Regenerate: `pip install fonttools`, download the Fraunces variable TTF from goo
 
 Wordmarks in Quicksand, Fredoka and Pacifico (all SIL OFL) with the same pastel i/j/i dots, plus five
 simple marks: three dots, pennant, rainbow, bunting, candle. Generators: `tools/logo_fonts.py`, `tools/logo_marks.py`.
+
+## Round 3: cornflower (`drafts/cf-*`)
+
+The owner wants a cornflower (василёк) motif for packaging and branding. Drafts: flower mark (colour and
+one-colour stamp), flower + Quicksand wordmark, Fraunces wordmark with a cornflower i-dot, round packaging sticker.
+Generator: `tools/logo_cornflower.py`.
