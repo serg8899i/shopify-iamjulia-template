@@ -45,7 +45,8 @@ Full setup and current state for a new session: [docs/HANDOFF.md](docs/HANDOFF.m
 - Give every schema setting a sensible default; use proper setting types (`image_picker`, `color`, `range`, `select`).
 - Respect `prefers-reduced-motion` for any animation.
 - Deliberate Horizon core edits (re-apply when merging upstream): `sections/password-footer.liquid` —
-  `show_powered_by` checkbox (default off) wraps the "powered by Shopify" line.
+  `show_powered_by` checkbox (default off) wraps the "powered by Shopify" line; `overlay` (default on) puts
+  short "Enter password" / "Log in" links over the full-screen password page photo.
 - Known upstream issue: `sections/header.liquid` (lines 90, 94) reuses static block id `header-menu`;
   the validator reports it. Not ours — leave it.
 
