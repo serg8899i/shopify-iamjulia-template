@@ -1,0 +1,144 @@
+{
+  "_note": "Content integration journal (see ../iamjulia-site-content/docs/AGENT_WORKFLOW.md). 'draft' = used during development on a password-protected store; not a launch publication. Owner permission to publish for launch is still required.",
+  "content_repo": "serg8899i/iamjulia-site-content",
+  "content_commit": "9d06260a051818255e945477867717ed91dc7dcc",
+  "items": {
+    "oliver-cake-front": {
+      "fingerprint": "1057737b924d5fcfee0aeae7eb0480533fb35a718502787a4c3e9c88b02cbcc6",
+      "sha256": "43e322865388d6a4e09a692aa9e01d7908c31b0f960bfdfac005592164cc3dc0",
+      "path": "products/cake-toppers/boys/working/night-front-level-v5.png",
+      "stage": "draft",
+      "site_target": [
+        "product:personalized-birthday-cake-topper",
+        "product:complete-birthday-party-set"
+      ]
+    },
+    "sofia-cake-front": {
+      "fingerprint": "6e58dc1684dc31f16c56bfdced9f868ec6e60e299e2d784b5f280dc3dbcfb057",
+      "sha256": "18b46ad59a544eb9adb4acb762b2729c6304754976fc399e9b0b9f73d0ac110c",
+      "path": "products/cake-toppers/neutral/working/night-front-landscape-v9.png",
+      "stage": "draft",
+      "site_target": [
+        "product:personalized-birthday-cake-topper",
+        "product:complete-birthday-party-set"
+      ]
+    },
+    "karolina-cake-front": {
+      "fingerprint": "018373a75bc0cb4bbe5999122da06f036e38877cb1c07d422e6ab6fef1c9100a",
+      "sha256": "593787d956d26ec709b153dd9ef52bd27d77d401a2190870e44fda870d230062",
+      "path": "products/cake-toppers/pink/working/night-front-landscape-v5.png",
+      "stage": "draft",
+      "site_target": [
+        "product:personalized-birthday-cake-topper",
+        "product:complete-birthday-party-set"
+      ]
+    },
+    "oliver-set-front": {
+      "fingerprint": "3dc6b4b5a9aee478774905f63dfc38df47eb3b0dbc1d254a8d1dd584bf99737d",
+      "sha256": "b8fcca1c9e33cbdc26b8bfd7016a3b072db358ce3d21721cb1cbeec0ec714fff",
+      "path": "products/decoration-sets/boys/working/night-front-hydrangeas-raised-v5.png",
+      "stage": "draft",
+      "site_target": [
+        "product:birthday-party-decoration-set",
+        "product:complete-birthday-party-set",
+        "templates/index.json#ij_included"
+      ]
+    },
+    "sofia-set-front": {
+      "fingerprint": "473831990325ddfd4e5257972b9a7fe9fef58405fe6675467ef0a4c3974f213b",
+      "sha256": "1de9cb395339863f3400013b9c40f6acb64a9b17caf996cbc5419d2c3ca7fb58",
+      "path": "products/decoration-sets/neutral/working/night-front-natural-props-v3.png",
+      "stage": "draft",
+      "site_target": [
+        "product:birthday-party-decoration-set",
+        "product:complete-birthday-party-set",
+        "templates/index.json#ij_hero",
+        "templates/password.json#background"
+      ]
+    },
+    "karolina-set-front": {
+      "fingerprint": "2f4b1251be3cb7ad78fac20d8857ad152637e587d93091fddbb9fcffcac4129a",
+      "sha256": "ceb65d6fa34009416702e7babf2a6472639c0cebd23df405cf4556c383c53c01",
+      "path": "products/decoration-sets/pink/working/night-front-raised-v2.png",
+      "stage": "draft",
+      "site_target": [
+        "product:birthday-party-decoration-set",
+        "product:complete-birthday-party-set"
+      ]
+    },
+    "oliver-cupcake-front": {
+      "fingerprint": "44816dee39d3e08ee106845fa4771775ef7f1d6f5c69d5dfca4305f0984e431f",
+      "sha256": "5db0d1c6b6af0e53a8a0f28311909cae7999baba7a6d226f594e3a7d05f3ccd3",
+      "path": "products/cupcake-toppers/boys/working/night-front-v1.png",
+      "stage": "draft",
+      "site_target": [
+        "product:birthday-cupcake-toppers",
+        "product:complete-birthday-party-set"
+      ]
+    },
+    "sofia-cupcake-front": {
+      "fingerprint": "675232ca066379fe693a3e9cb3a73a5f5b9b970af40eedaff5702d2b0181dbea",
+      "sha256": "82660d2f7bbb2d6beef38abd1567d9535a00ee1dc6242a3f2bc43b01fe753b65",
+      "path": "products/cupcake-toppers/neutral/working/night-front-v1.png",
+      "stage": "draft",
+      "site_target": [
+        "product:birthday-cupcake-toppers",
+        "product:complete-birthday-party-set",
+        "templates/index.json#ij_palettes (Pastel)"
+      ]
+    },
+    "karolina-cupcake-front": {
+      "fingerprint": "9cd252a5653792a7dfc571afe787888b49369e88f0b040efaef4231de21db457",
+      "sha256": "3d445ff9ac7981586ebc9e0e30088932ff730104d86c34c99badfcebf9a28718",
+      "path": "products/cupcake-toppers/pink/working/night-front-v1.png",
+      "stage": "draft",
+      "site_target": [
+        "product:birthday-cupcake-toppers",
+        "product:complete-birthday-party-set"
+      ]
+    },
+    "oliver-banner-only": {
+      "fingerprint": "a4bf80a8b1ebfd653ac3e5ae19627555c2c2f636c80c2a91539a55774018dbc4",
+      "sha256": "2c04306434b6a41d22c642fbe005366033436769412ee63869ebb7b0e377956b",
+      "path": "products/decoration-sets/boys/working/night-banner-only-even-light-v3.png",
+      "stage": "draft",
+      "site_target": [
+        "product:personalized-happy-birthday-banner",
+        "templates/index.json#ij_palettes (Blue)"
+      ]
+    },
+    "sofia-banner-only": {
+      "fingerprint": "3624420e32f146596b5f538e4de07cb0405ffd6b88569fb2017b7c7db1d9dec9",
+      "sha256": "355881943f92fc292512bb656bbbca7101934bf0c42de87acb6223732b6332d2",
+      "path": "products/decoration-sets/neutral/working/night-banner-only-soft-shadows-v3.png",
+      "stage": "draft",
+      "site_target": [
+        "product:personalized-happy-birthday-banner"
+      ]
+    },
+    "karolina-banner-only": {
+      "fingerprint": "59213c88586bf3fa66e43214e65daef6d810d1f5106ff028ab89532840221750",
+      "sha256": "f18aa376bd8e6da49e6d36b9882143be301f79065ddc3679d7d7b880566db4b7",
+      "path": "products/decoration-sets/pink/working/night-banner-only-v1.png",
+      "stage": "draft",
+      "site_target": [
+        "product:personalized-happy-birthday-banner",
+        "templates/index.json#ij_palettes (Pink)"
+      ]
+    }
+  },
+  "documents": {
+    "docs/PRODUCT_OFFER.md": "17ab6d7250c0fe354ef68bbc98154f049e6cb2174fde525cc0a024c3b876980d",
+    "docs/AGENT_WORKFLOW.md": "938a7a8d7b2756345f7e61348e6a91be8c2f01596af505544e88372181c572be",
+    "production/feedback/comments.json": "466472eb839b330064c1ea3e1fda0f928d7f81d0467fb408dab0b746af179df4",
+    "production/feedback/comment-actions.json": "b5d37b65c0d06f2c9cdfc1b0ee05c0b0b802edabc3a52a67209e2263941178a5"
+  },
+  "publications": [],
+  "history": [
+    {
+      "date": "2026-10-08",
+      "content_commit": "9d06260a051818255e945477867717ed91dc7dcc",
+      "event": "Initial receipt. All 12 heroes already uploaded as product media (tools/seed-products.mjs) and used on the homepage/password page during development; store is password-protected. Owner (chat, 2026-10-08): being behind the password during development is fine."
+    }
+  ]
+}
