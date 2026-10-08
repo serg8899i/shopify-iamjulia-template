@@ -22,6 +22,10 @@ Full setup and current state for a new session: [docs/HANDOFF.md](docs/HANDOFF.m
 - Branch flow: work and push on `dev` (draft theme "iamjulia — dev", previewed by the owner); the owner merges a PR
   `dev` → `main`; `main` is connected to the published (live) theme. Never push to `main` directly.
   Theme editor changes should be made only on the dev theme to avoid JSON merge conflicts.
+- Releases happen from chat: the owner does not open GitHub. When the owner explicitly says to release
+  (e.g. "выкатывай"), open (or reuse) a PR `dev` → `main`, confirm it is mergeable, merge it via the GitHub MCP
+  tools, then screenshot the live site. Never merge to `main` without that explicit instruction in the
+  current conversation. Rollback on request: revert the last release merge on `main` via a PR, same flow.
   Every push updates the theme in the store; edits saved in the Shopify editor are committed back
   (mostly `config/settings_data.json`, `templates/*.json`). Always `git pull` before changing files.
 - Theme files must stay at the repository root.
