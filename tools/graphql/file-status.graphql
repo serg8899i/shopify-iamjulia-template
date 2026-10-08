@@ -1,0 +1,10 @@
+query FileStatus($id: ID!) {
+  node(id: $id) {
+    ... on MediaImage {
+      fileStatus
+      image {
+        url
+      }
+    }
+  }
+}

@@ -34,3 +34,10 @@ Generator: `tools/logo_fredoka_cornflower.py`.
 Cornflower sits right on top of the i stem (the stem reads as its stalk), rotated 22.5 degrees so no petal points
 straight down and the stem passes between the two lower petals; j and second i dots are cornflower blue.
 `close` = centre 22px above the stem, `closer` = 15px. Generator: `tools/logo_fredoka_b.py`.
+
+## Final logo (chosen 2026-10-08)
+
+Fredoka wordmark, cornflower on the first i (rotated 22.5 deg, sitting on the stem), blue dots on j and i.
+`iamjulia-logo.svg|png`, `iamjulia-logo-light.svg|png` (cream letters, used as logo_inverse),
+`iamjulia-flower.svg`, `iamjulia-favicon.png`. PNGs are uploaded to Shopify Files (`tools/upload-files.mjs`) and set in
+`config/settings_data.json` as logo / logo_inverse / favicon.
