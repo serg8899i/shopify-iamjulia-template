@@ -150,7 +150,7 @@ for (const { product, images } of plan) {
       descriptionHtml: product.description_html,
       vendor: catalog.vendor,
       productType: product.product_type,
-      tags: ['mockup', `content-${catalog.content_commit.slice(0, 7)}`],
+      tags: ['mockup', `content-${catalog.content_commit.slice(0, 7)}`, ...(product.tags ?? [])],
       status: 'ACTIVE',
       productOptions: [{ name: 'Palette', position: 1, values: paletteNames.map((name) => ({ name })) }],
       files,

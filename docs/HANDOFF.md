@@ -6,7 +6,7 @@ explains the whole setup and current state. Last updated 2026-10-08.
 ## The business
 
 - **iamjulia** — a family project making personalized kids' birthday party decorations.
-- Store: `iamjulia.shop` (Shopify handle `iamjulia.myshopify.com`), password-protected while in development.
+- Store: `iamjulia.shop` (Admin API domain `im1xd7-ev.myshopify.com`), password-protected while in development.
 - Market: USA, English, USD. The content repo's `docs/PRODUCT_OFFER.md` also mentions Etsy; the owner chose
   Shopify for this site. Whether Etsy runs in parallel is not settled.
 - Offer (confirmed): personalized banner (HAPPY BIRTHDAY + child's name, 2 lines); Decoration Set (banner +
@@ -45,7 +45,7 @@ Clone the content repo next to the theme: `../iamjulia-content`, and `git pull -
 - **Admin API**: a Dev Dashboard app `iamjulia-builder` (client credentials grant) with scopes
   `read_products, write_products, write_inventory, read_publications, write_publications,
   write_online_store_navigation, write_content`. Env secrets: `SHOPIFY_STORE`, `SHOPIFY_CLIENT_ID`,
-  `SHOPIFY_CLIENT_SECRET`. Not yet used successfully — the first run is the next step.
+  `SHOPIFY_CLIENT_SECRET`. Seeded successfully on 2026-10-08 (5 products, published to Online Store).
 - No Theme Access token, so no `shopify theme push`; theme deploys only through GitHub.
 
 ## What's built so far
@@ -63,8 +63,7 @@ Clone the content repo next to the theme: `../iamjulia-content`, and `git pull -
 
 ## Next steps
 
-1. Add the `personalized` tag to banner, both sets and the cake topper in `tools/products.json` (seed script
-   currently tags only `mockup` + content commit), then run `--dry-run` and the real seed.
+1. Done: `personalized` tag added (catalog + live products).
 2. Owner reviews the `dev` preview; iterate on design from their screenshots. Nothing has been visually
    verified yet — only validator-checked.
 3. Header/footer navigation and pages (About, FAQ, Contact) via Admin API.
