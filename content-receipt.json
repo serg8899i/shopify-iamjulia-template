@@ -1,7 +1,7 @@
 {
   "_note": "Content integration journal (see ../iamjulia-site-content/docs/AGENT_WORKFLOW.md). 'draft' = used during development on a password-protected store; not a launch publication. Owner permission to publish for launch is still required.",
   "content_repo": "serg8899i/iamjulia-site-content",
-  "content_commit": "9d06260a051818255e945477867717ed91dc7dcc",
+  "content_commit": "03b2ac2faf5e22e1272c6813187f26df48777d9b",
   "items": {
     "oliver-cake-front": {
       "fingerprint": "1057737b924d5fcfee0aeae7eb0480533fb35a718502787a4c3e9c88b02cbcc6",
@@ -129,9 +129,16 @@
   },
   "documents": {
     "docs/PRODUCT_OFFER.md": "17ab6d7250c0fe354ef68bbc98154f049e6cb2174fde525cc0a024c3b876980d",
-    "docs/AGENT_WORKFLOW.md": "938a7a8d7b2756345f7e61348e6a91be8c2f01596af505544e88372181c572be",
+    "docs/AGENT_WORKFLOW.md": "3a28c6c67a8e86869269275a26924944cfb87c38d7ae13509d8810dc7244d75a",
     "production/feedback/comments.json": "466472eb839b330064c1ea3e1fda0f928d7f81d0467fb408dab0b746af179df4",
-    "production/feedback/comment-actions.json": "b5d37b65c0d06f2c9cdfc1b0ee05c0b0b802edabc3a52a67209e2263941178a5"
+    "production/feedback/comment-actions.json": "b5d37b65c0d06f2c9cdfc1b0ee05c0b0b802edabc3a52a67209e2263941178a5",
+    "docs/SITE_CONTRACT.md": "1da25114cab368359bb1e9584aca36f3a303ef7dab1f6b9e4f053545721c3b05",
+    "catalog/products/birthday-cupcake-toppers.json": "8628c1b6a9d467902bfb1f037401fb3b52d30b1e9e84377ff9b811ef2131a50b",
+    "catalog/products/birthday-party-decoration-set.json": "3df3fc37f3430023d1bd268ecc14b7be0835a37678bdb08cd16b507145f995a9",
+    "catalog/products/complete-birthday-party-set.json": "ab2c60b7ade9ba08c8d71449b6677e9458b4caef666635c810f7fa376da9668a",
+    "catalog/products/personalized-birthday-cake-topper.json": "520d20f9dffa96b8d5988e5f2847ae2b66d41bf1f0e76f4ff059781e2d515484",
+    "catalog/products/personalized-happy-birthday-banner.json": "9f501e6f6ab98c96cd7ee3fcaede17abff5c53785b30fb52f229381fb4a89971",
+    "catalog/site-images.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
   },
   "publications": [],
   "history": [
@@ -139,6 +146,11 @@
       "date": "2026-10-08",
       "content_commit": "9d06260a051818255e945477867717ed91dc7dcc",
       "event": "Initial receipt. All 12 heroes already uploaded as product media (tools/seed-products.mjs) and used on the homepage/password page during development; store is password-protected. Owner (chat, 2026-10-08): being behind the password during development is fine."
+    },
+    {
+      "date": "2026-10-08",
+      "content_commit": "03b2ac2faf5e22e1272c6813187f26df48777d9b",
+      "event": "Switched product integration to catalog/products cards (SITE_CONTRACT.md). Re-ran tools/seed-products.mjs: 5 products now take titles, personalization and ordered photos (27 links to the same 12 files) from the cards. Store is password-protected. Owner (chat, 2026-10-08): cake topper takes child's name and age; 'делай' and 'сливай код в main'. Image fingerprints unchanged; stage stays draft (all candidates)."
     }
   ]
 }
