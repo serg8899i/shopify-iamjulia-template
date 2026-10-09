@@ -38,7 +38,7 @@ Full setup and current state for a new session: [docs/HANDOFF.md](docs/HANDOFF.m
   Each keeps its CSS in its own `{% stylesheet %}` with `ij-` class names (no layout edits needed).
 - Template JSON (`templates/*.json`) and `config/settings_data.json` are store configuration, not Horizon core:
   editing them is fine (the homepage and product page are customized there), but pull first — the editor writes them too.
-- Brand: fonts Grandstander Bold (headings) + Jost (body), both from the Shopify font library; palette background #FFFBF5, text #3A322B,
+- Brand: fonts Fraunces SemiBold (headings) + Jost (body), both from the Shopify font library; palette background #FFFBF5, text #3A322B,
   accent sage #56715A (primary buttons), sand #F5EDE2, border #E6DACB.
 - Product personalization: block `ij-personalization` (in `templates/product.json`) shows on products tagged
   `personalized` and saves the line item property "Child's name"; a second instance (field type "age") shows on

@@ -53,7 +53,7 @@ Clone the content repo next to the theme: `../iamjulia-site-content`, and `git p
 
 ## What's built so far
 
-- Brand settings: Grandstander Bold headings + Jost body; palette bg #FFFBF5, text #3A322B, sage accent #56715A
+- Brand settings: Fraunces headings + Jost body; palette bg #FFFBF5, text #3A322B, sage accent #56715A
   (primary buttons), sand #F5EDE2, border #E6DACB; pill buttons, rounded cards.
 - Homepage (`templates/index.json`): `ij-hero` → Horizon product list ("Shop the party") → `ij-whats-included`
   → `ij-palettes` → `ij-steps` → `ij-faq`. Image pickers are empty (placeholders) until the owner uploads images
