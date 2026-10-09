@@ -4,7 +4,7 @@
   assign layout_class = 'ij-hero--' | append: section.settings.layout
 -%}
 
-<div class="section section--page-width ij-hero {{ height_class }} {{ layout_class }}{% if image == blank %} ij-hero--no-image{% endif %}">
+<div class="section {% if section.settings.layout == 'fullscreen' %}section--full-width{% else %}section--page-width{% endif %} ij-hero {{ height_class }} {{ layout_class }}{% if image == blank %} ij-hero--no-image{% endif %}">
   <div class="ij-hero__inner">
     <div class="ij-hero__media">
       {%- if image != blank -%}
@@ -13,7 +13,7 @@
           | image_url: width: 2400
           | image_tag:
             class: 'ij-hero__image',
-            sizes: '(min-width: 990px) 60vw, 100vw',
+            sizes: '100vw',
             widths: '750, 1100, 1500, 1800, 2400',
             loading: 'eager',
             fetchpriority: 'high',
@@ -217,6 +217,43 @@
     }
   }
 
+  /* Full screen: photo fills the first screen edge to edge; the transparent header sits on top of it. */
+  .ij-hero--fullscreen .ij-hero__inner {
+    height: 100svh;
+    min-height: 520px;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .ij-hero--fullscreen .ij-hero__media {
+    position: absolute;
+    inset: 0;
+  }
+
+  .ij-hero--fullscreen .ij-hero__heading {
+    font-size: clamp(2.2rem, 4.2vw, 3.6rem);
+  }
+
+  .ij-hero--fullscreen .ij-hero__media::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    height: 200px;
+    background: linear-gradient(to bottom, rgb(0 0 0 / 0.5), rgb(0 0 0 / 0));
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .ij-hero--fullscreen:not(.ij-hero--no-image) .ij-hero__content {
+    padding: clamp(24px, 5vw, 64px) max(var(--page-margin, 16px), calc((100vw - var(--page-width, 1400px)) / 2 + var(--page-margin, 16px))) clamp(40px, 8vh, 96px);
+  }
+
+  .ij-hero--fullscreen .ij-hero__buttons .button-secondary {
+    color: #fff;
+    background: transparent;
+    border: 1px solid rgb(255 255 255 / 0.85);
+  }
+
   .ij-hero__buttons {
     display: flex;
     flex-wrap: wrap;
@@ -253,7 +290,8 @@
       "label": "Layout",
       "options": [
         { "value": "split", "label": "Text beside image" },
-        { "value": "overlay", "label": "Text over image" }
+        { "value": "overlay", "label": "Text over image" },
+        { "value": "fullscreen", "label": "Full screen, under the header" }
       ],
       "default": "split"
     },

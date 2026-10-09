@@ -38,13 +38,16 @@ Full setup and current state for a new session: [docs/HANDOFF.md](docs/HANDOFF.m
   Each keeps its CSS in its own `{% stylesheet %}` with `ij-` class names (no layout edits needed).
 - Template JSON (`templates/*.json`) and `config/settings_data.json` are store configuration, not Horizon core:
   editing them is fine (the homepage and product page are customized there), but pull first — the editor writes them too.
-- Brand: fonts Fraunces (headings) + Nunito Sans (body); palette background #FFFBF5, text #3A322B,
+- Brand: fonts Grandstander Bold (headings) + Jost (body), both from the Shopify font library; palette background #FFFBF5, text #3A322B,
   accent sage #56715A (primary buttons), sand #F5EDE2, border #E6DACB.
 - Product personalization: block `ij-personalization` (in `templates/product.json`) shows on products tagged
   `personalized` and saves the line item property "Child's name"; a second instance (field type "age") shows on
   products tagged `personalized-age` (cake topper, complete set — owner confirmed name + age on 2026-10-08) and saves "Age".
-- Product gallery: Horizon carousel with left thumbnails, its own zoom off; block `ij-lightbox` (+ `assets/ij-lightbox.js`)
-  opens gallery photos in a modal viewer (dimmed page, fitted photo, close/arrows/counter, Esc, swipe).
+- Product gallery: Horizon carousel with thumbnails on the left (Amazon-like; white frames with shadow), its own zoom off; block `ij-lightbox`
+  (+ `assets/ij-lightbox.js`) opens gallery photos in a modal viewer (dimmed page, fitted photo, close/arrows/counter,
+  Esc, swipe) and its stylesheet frames the main photo and styles the thumbnails (selected one enlarged).
+- Homepage first screen: `ij-hero` layout "fullscreen" (photo edge to edge, 100svh, text bottom-left over a gradient);
+  header is transparent on the home page (logo centered, menu row below, white text, inverse logo); no announcement bar.
 - Give every schema setting a sensible default; use proper setting types (`image_picker`, `color`, `range`, `select`).
 - Respect `prefers-reduced-motion` for any animation.
 - Deliberate Horizon core edits (re-apply when merging upstream): `sections/password-footer.liquid` —
