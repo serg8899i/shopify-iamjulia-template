@@ -4,7 +4,9 @@
 // combined with tools/products.json (prices, product types, descriptions, extra tags).
 //
 // Env: SHOPIFY_STORE (xxx.myshopify.com), SHOPIFY_CLIENT_ID, SHOPIFY_CLIENT_SECRET
-// Run: NODE_USE_ENV_PROXY=1 node tools/seed-products.mjs [--content ../iamjulia-site-content] [--dry-run]
+// Run: NODE_USE_ENV_PROXY=1 node tools/seed-products.mjs [--content ../iamjulia-site-content] [--dry-run] [--include-preview]
+// --include-preview also uploads preview-only images (e.g. infographics with sample sizes), but only while the
+// storefront is password-protected (owner's decision, 2026-10-09); otherwise they are skipped.
 //
 // Idempotent: productSet upserts by handle, so re-running replaces each product's media and variants.
 
@@ -22,6 +24,7 @@ const { values: args } = parseArgs({
   options: {
     content: { type: 'string', default: resolve(here, '../../iamjulia-site-content') },
     'dry-run': { type: 'boolean', default: false },
+    'include-preview': { type: 'boolean', default: false },
   },
 });
 
@@ -88,6 +91,23 @@ async function uploadImages(api, paths) {
 }
 
 const catalog = JSON.parse(await readFile(join(here, 'products.json'), 'utf8'));
+const isPreview = (img) => img.usage === 'preview_only' || img.dimensions_status === 'placeholder';
+
+let api;
+let includePreview = false;
+if (!args['dry-run'] || args['include-preview']) {
+  for (const key of ['SHOPIFY_STORE', 'SHOPIFY_CLIENT_ID', 'SHOPIFY_CLIENT_SECRET']) {
+    if (!process.env[key]) throw new Error(`Missing env ${key}`);
+  }
+  api = client(process.env.SHOPIFY_STORE, await getToken(process.env.SHOPIFY_STORE));
+}
+if (args['include-preview']) {
+  const locked = (await api(await gql('store-password'))).onlineStore.passwordProtection.enabled;
+  includePreview = locked;
+  console.log(locked
+    ? 'Storefront is password-protected: preview-only images will be included.'
+    : 'Storefront is OPEN: preview-only images are skipped despite --include-preview.');
+}
 const contentCommit = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: args.content, encoding: 'utf8' }).trim();
 const readCard = async (handle) =>
   JSON.parse(await readFile(join(args.content, 'catalog', 'products', `${handle}.json`), 'utf8'));
@@ -97,12 +117,13 @@ const plan = await Promise.all(
   catalog.products.map(async (product) => {
     const card = await readCard(product.handle);
     if (card.status !== 'active') throw new Error(`Card ${product.handle} is ${card.status}; ask the owner first`);
-    // usage=preview_only / dimensions_status=placeholder (e.g. infographics with sample sizes) never go to the store.
-    const skipped = card.images.filter((img) => img.usage === 'preview_only' || img.dimensions_status === 'placeholder');
+    // usage=preview_only / dimensions_status=placeholder (infographics with sample sizes) go to the store only with
+    // --include-preview while the storefront is password-protected.
+    const skipped = includePreview ? [] : card.images.filter(isPreview);
     if (skipped.length) console.log(`${product.handle}: skipping ${skipped.length} preview-only image(s)`);
     const images = card.images.filter((img) => !skipped.includes(img)).map((img) => ({
       palette: img.palette && catalog.palettes[img.palette],
-      main: img.role === 'main',
+      main: img.role === 'main' && !isPreview(img),
       path: join(args.content, img.file),
       // The product gallery hides photos of other palettes by this alt prefix (snippets/product-media-gallery-content.liquid).
       alt: img.palette && !img.alt.startsWith(`${catalog.palettes[img.palette]} `)
@@ -121,11 +142,6 @@ if (args['dry-run']) {
   process.exit(0);
 }
 
-for (const key of ['SHOPIFY_STORE', 'SHOPIFY_CLIENT_ID', 'SHOPIFY_CLIENT_SECRET']) {
-  if (!process.env[key]) throw new Error(`Missing env ${key}`);
-}
-const store = process.env.SHOPIFY_STORE;
-const api = client(store, await getToken(store));
 
 const publications = (await api(await gql('publications'))).publications.nodes;
 const onlineStore = publications.find(

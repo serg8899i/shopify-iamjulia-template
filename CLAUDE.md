@@ -77,4 +77,7 @@ Full setup and current state for a new session: [docs/HANDOFF.md](docs/HANDOFF.m
 - `tools/seed-products.mjs` merges cards + `tools/products.json` and upserts the products by handle via the Admin GraphQL API (client credentials grant
   from a Dev Dashboard app) and publishes them to the Online Store. Needs env `SHOPIFY_STORE`, `SHOPIFY_CLIENT_ID`,
   `SHOPIFY_CLIENT_SECRET`. Run: `NODE_USE_ENV_PROXY=1 node tools/seed-products.mjs` (`--dry-run` to preview).
+- Owner's standing permission (2026-10-09): while the storefront is password-protected, upload all card images to the
+  store, including preview-only ones (`--include-preview`; the script checks the password itself and skips them when
+  the store is open). Before launch: re-run without `--include-preview` and switch the content check back to ask-first.
 - Validate GraphQL in `tools/graphql/` with `node .claude/skills/shopify/scripts/validate.mjs --api admin --file <f>`.

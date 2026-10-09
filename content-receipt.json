@@ -1,7 +1,7 @@
 {
   "_note": "Content integration journal (see ../iamjulia-site-content/docs/AGENT_WORKFLOW.md). 'draft' = used during development on a password-protected store; not a launch publication. Owner permission to publish for launch is still required.",
   "content_repo": "serg8899i/iamjulia-site-content",
-  "content_commit": "03b2ac2faf5e22e1272c6813187f26df48777d9b",
+  "content_commit": "268d29e6c4ed24a097d6500369b774e7ecb4dbb4",
   "items": {
     "oliver-cake-front": {
       "fingerprint": "1057737b924d5fcfee0aeae7eb0480533fb35a718502787a4c3e9c88b02cbcc6",
@@ -128,16 +128,16 @@
     }
   },
   "documents": {
-    "docs/PRODUCT_OFFER.md": "17ab6d7250c0fe354ef68bbc98154f049e6cb2174fde525cc0a024c3b876980d",
+    "docs/PRODUCT_OFFER.md": "d72a8e754847eb9acf6452ded7723bb84ed00b0b361c8c4a783c43ac25bf86a6",
     "docs/AGENT_WORKFLOW.md": "3a28c6c67a8e86869269275a26924944cfb87c38d7ae13509d8810dc7244d75a",
     "production/feedback/comments.json": "466472eb839b330064c1ea3e1fda0f928d7f81d0467fb408dab0b746af179df4",
     "production/feedback/comment-actions.json": "b5d37b65c0d06f2c9cdfc1b0ee05c0b0b802edabc3a52a67209e2263941178a5",
-    "docs/SITE_CONTRACT.md": "1da25114cab368359bb1e9584aca36f3a303ef7dab1f6b9e4f053545721c3b05",
-    "catalog/products/birthday-cupcake-toppers.json": "8628c1b6a9d467902bfb1f037401fb3b52d30b1e9e84377ff9b811ef2131a50b",
-    "catalog/products/birthday-party-decoration-set.json": "3df3fc37f3430023d1bd268ecc14b7be0835a37678bdb08cd16b507145f995a9",
-    "catalog/products/complete-birthday-party-set.json": "ab2c60b7ade9ba08c8d71449b6677e9458b4caef666635c810f7fa376da9668a",
-    "catalog/products/personalized-birthday-cake-topper.json": "520d20f9dffa96b8d5988e5f2847ae2b66d41bf1f0e76f4ff059781e2d515484",
-    "catalog/products/personalized-happy-birthday-banner.json": "9f501e6f6ab98c96cd7ee3fcaede17abff5c53785b30fb52f229381fb4a89971",
+    "docs/SITE_CONTRACT.md": "94ab6b900991823b58142ffa8ed384d0c7b8b2b43931ef83421af079a34d1b00",
+    "catalog/products/birthday-cupcake-toppers.json": "1b1e86f1b79840dde38e2b270c8e5280477e274f46c68d63d2ecc41868bd4381",
+    "catalog/products/birthday-party-decoration-set.json": "e123509ab06cee411c336e4c9c1e70285dce775a01d08132710beca4176cd98b",
+    "catalog/products/complete-birthday-party-set.json": "0fb83e9b49a3d442b338ec30775e97419e7e4aee90ad43e3d29d56873a0ddbd3",
+    "catalog/products/personalized-birthday-cake-topper.json": "849a8fa7934e975c77f93ce473a75a88e1c4da9ce746705df37bb1903e31e271",
+    "catalog/products/personalized-happy-birthday-banner.json": "fdaad90e307236e657bc23048a211addfd0542e65b11ef0399fe2b3222dbaa9d",
     "catalog/site-images.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
   },
   "publications": [],
@@ -151,6 +151,103 @@
       "date": "2026-10-08",
       "content_commit": "03b2ac2faf5e22e1272c6813187f26df48777d9b",
       "event": "Switched product integration to catalog/products cards (SITE_CONTRACT.md). Re-ran tools/seed-products.mjs: 5 products now take titles, personalization and ordered photos (27 links to the same 12 files) from the cards. Store is password-protected. Owner (chat, 2026-10-08): cake topper takes child's name and age; 'делай' and 'сливай код в main'. Image fingerprints unchanged; stage stays draft (all candidates)."
+    },
+    {
+      "date": "2026-10-09",
+      "content_commit": "268d29e6c4ed24a097d6500369b774e7ecb4dbb4",
+      "event": "Owner (chat, 2026-10-09): 'Давай пока у нас закрыто добавляй все на сайт' — standing permission, while the storefront is password-protected, to upload all card images including preview-only infographics (sample dimensions). Ran tools/seed-products.mjs --include-preview (gated on onlineStore.passwordProtection.enabled=true): 15 infographics added to the 5 products' galleries after the main photos; hero images unchanged. Preview-only images must be removed (re-run without --include-preview) before the store opens."
     }
-  ]
+  ],
+  "preview_items": {
+    "products/cupcake-toppers/boys/working/infographic-cupcake-editorial-v1.png": {
+      "sha256": "a42f029a782aed1919dc2a20b5aaa7554011229bdc9218edd2cb38570b65f8f5",
+      "product": "birthday-cupcake-toppers",
+      "stage": "draft",
+      "site_target": "product media: birthday-cupcake-toppers (gallery, after main photos)"
+    },
+    "products/cupcake-toppers/neutral/working/infographic-cupcake-editorial-v1.png": {
+      "sha256": "469386fb856226d13b545f74a3b37a98b99f62cca92e4341bcfe2d2c60e19660",
+      "product": "birthday-cupcake-toppers",
+      "stage": "draft",
+      "site_target": "product media: birthday-cupcake-toppers (gallery, after main photos)"
+    },
+    "products/cupcake-toppers/pink/working/infographic-cupcake-editorial-v1.png": {
+      "sha256": "806a0af6acab1e5f81429754f3eb980a5823ac49aa8e77842399f5cee5301151",
+      "product": "birthday-cupcake-toppers",
+      "stage": "draft",
+      "site_target": "product media: birthday-cupcake-toppers (gallery, after main photos)"
+    },
+    "products/decoration-sets/boys/working/infographic-base-editorial-decor-v2.png": {
+      "sha256": "3089ab26cec33186168c5284ed44f1ba4ddd9a63107f4c6458988a88b066d609",
+      "product": "birthday-party-decoration-set",
+      "stage": "draft",
+      "site_target": "product media: birthday-party-decoration-set (gallery, after main photos)"
+    },
+    "products/decoration-sets/neutral/working/infographic-base-editorial-v1.png": {
+      "sha256": "5bcbd7059f4a18cfb131e4285aa89cfbd2b8ff4a6816c265b08dcec7225f818b",
+      "product": "birthday-party-decoration-set",
+      "stage": "draft",
+      "site_target": "product media: birthday-party-decoration-set (gallery, after main photos)"
+    },
+    "products/decoration-sets/pink/working/infographic-base-editorial-v1.png": {
+      "sha256": "6f6cb9c96bab9ed908df77ccbe859a0ac67b4812d61beed6b9ccde0c21eefdd2",
+      "product": "birthday-party-decoration-set",
+      "stage": "draft",
+      "site_target": "product media: birthday-party-decoration-set (gallery, after main photos)"
+    },
+    "products/decoration-sets/boys/working/infographic-complete-editorial-v1.png": {
+      "sha256": "a3d366f3afee92b19f70ecaaa19cadfd1fd1a51706db34f3f5558bfac1f8bedf",
+      "product": "complete-birthday-party-set",
+      "stage": "draft",
+      "site_target": "product media: complete-birthday-party-set (gallery, after main photos)"
+    },
+    "products/decoration-sets/neutral/working/infographic-complete-editorial-v1.png": {
+      "sha256": "b3f6bb594c99f47e79fbb6b53fce83106066f0e0e07620d3319b7295888d6c57",
+      "product": "complete-birthday-party-set",
+      "stage": "draft",
+      "site_target": "product media: complete-birthday-party-set (gallery, after main photos)"
+    },
+    "products/decoration-sets/pink/working/infographic-complete-editorial-decor-v2.png": {
+      "sha256": "b6fb3beb74e5f85a3be25fe4de3c0f331031c83c463169b4d728a18b2794ceaf",
+      "product": "complete-birthday-party-set",
+      "stage": "draft",
+      "site_target": "product media: complete-birthday-party-set (gallery, after main photos)"
+    },
+    "products/cake-toppers/boys/working/infographic-cake-editorial-v1.png": {
+      "sha256": "beb1ccebb6a80358d22121947bce616c5179b02de531c13d0aa6ef5b35c1d674",
+      "product": "personalized-birthday-cake-topper",
+      "stage": "draft",
+      "site_target": "product media: personalized-birthday-cake-topper (gallery, after main photos)"
+    },
+    "products/cake-toppers/neutral/working/infographic-cake-editorial-v1.png": {
+      "sha256": "9f2ea0f1401b1cd402c72d3aa155fba50d989edc8afa6d2154de04b42813f370",
+      "product": "personalized-birthday-cake-topper",
+      "stage": "draft",
+      "site_target": "product media: personalized-birthday-cake-topper (gallery, after main photos)"
+    },
+    "products/cake-toppers/pink/working/infographic-cake-editorial-v1.png": {
+      "sha256": "3d8011296f8eef5459e9506e8d6739451b1a987913262a29842780eec6d81971",
+      "product": "personalized-birthday-cake-topper",
+      "stage": "draft",
+      "site_target": "product media: personalized-birthday-cake-topper (gallery, after main photos)"
+    },
+    "products/decoration-sets/boys/working/infographic-banner-editorial-decor-v2.png": {
+      "sha256": "31e2f83a8cc5e3445be2e1c656ae2f17b641262a7233fff3edcd713e7d31f95d",
+      "product": "personalized-happy-birthday-banner",
+      "stage": "draft",
+      "site_target": "product media: personalized-happy-birthday-banner (gallery, after main photos)"
+    },
+    "products/decoration-sets/neutral/working/infographic-banner-editorial-v1.png": {
+      "sha256": "d9bb896a301981c8e11ec3b7e49aa3d75dc6c6523ad15358b0d166c8bdc76c79",
+      "product": "personalized-happy-birthday-banner",
+      "stage": "draft",
+      "site_target": "product media: personalized-happy-birthday-banner (gallery, after main photos)"
+    },
+    "products/decoration-sets/pink/working/infographic-banner-editorial-v1.png": {
+      "sha256": "9b02ee504db9b2490ba90b940dc2eecb9e79707645617c5b84b1e8a484b0163b",
+      "product": "personalized-happy-birthday-banner",
+      "stage": "draft",
+      "site_target": "product media: personalized-happy-birthday-banner (gallery, after main photos)"
+    }
+  }
 }
