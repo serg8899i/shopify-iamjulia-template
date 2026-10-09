@@ -77,12 +77,14 @@ Clone the content repo next to the theme: `../iamjulia-site-content`, and `git p
 
 ## Content monitoring
 
-- Routine `trig_01XSvGgVgY6XsRMnHqbQM2N3` ("iamjulia: проверка библиотеки контента") runs twice a day
-  (08:52 and 17:52 America/Los_Angeles) in a fresh session: clones both repos, runs
-  `check_site_updates.py` against `content-receipt.json` and reports new/changed heroes, removed IDs and changed
-  documents to the owner (push + email). It never integrates or publishes; the owner replies in that session.
-- After integrating content into `dev`, update `content-receipt.json` (fingerprints, site_target, stage) so the next
-  check starts from the new baseline.
+- Routine `trig_01V1kAGwzKmi6EDd3hHapqDZ` ("iamjulia: проверка и загрузка контента") runs twice a day
+  (08:52 and 17:52 America/Los_Angeles) inside the owner's working session `session_01CyCiS6Kc1fDECbEqYudiCk`, which has
+  both repositories attached (a fresh session per fire could not reach the content repo — that routine was deleted).
+- It pulls both repos, runs `check_site_updates.py`; if nothing changed it says so in one line. If cards changed and the
+  store is password-protected, it runs `seed-products.mjs --include-preview` (owner's standing permission 2026-10-09),
+  updates `content-receipt.json`, pushes `dev` and sends the owner a push report. It never creates products missing
+  from `tools/products.json`, never merges the theme to `main`, never deletes from the site.
+- Before launch: switch the routine back to report-only and re-run the seed without `--include-preview`.
 
 ## Known issues
 
