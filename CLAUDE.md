@@ -46,6 +46,8 @@ Full setup and current state for a new session: [docs/HANDOFF.md](docs/HANDOFF.m
 - Product gallery: Horizon carousel with thumbnails on the left (Amazon-like; white frames with shadow), its own zoom off; block `ij-lightbox`
   (+ `assets/ij-lightbox.js`) opens gallery photos in a modal viewer (dimmed page, fitted photo, close/arrows/counter,
   Esc, swipe) and its stylesheet frames the main photo and styles the thumbnails (selected one enlarged).
+- Homepage first screen: `ij-hero` layout "fullscreen" (photo edge to edge, 100svh, text bottom-left over a gradient);
+  header is transparent on the home page (logo centered, menu row below, white text, inverse logo); no announcement bar.
 - Give every schema setting a sensible default; use proper setting types (`image_picker`, `color`, `range`, `select`).
 - Respect `prefers-reduced-motion` for any animation.
 - Deliberate Horizon core edits (re-apply when merging upstream): `sections/password-footer.liquid` —
