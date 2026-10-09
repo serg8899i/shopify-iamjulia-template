@@ -219,23 +219,29 @@
 
   /* Full screen: photo fills the first screen edge to edge; the transparent header sits on top of it. */
   .ij-hero--fullscreen .ij-hero__inner {
-    min-height: 100svh;
+    height: 100svh;
+    min-height: 520px;
     margin: 0;
     border-radius: 0;
+  }
+
+  .ij-hero--fullscreen .ij-hero__media {
+    position: absolute;
+    inset: 0;
+  }
+
+  .ij-hero--fullscreen .ij-hero__heading {
+    font-size: clamp(2.2rem, 4.2vw, 3.6rem);
   }
 
   .ij-hero--fullscreen .ij-hero__media::before {
     content: '';
     position: absolute;
     inset: 0 0 auto;
-    height: 220px;
-    background: linear-gradient(to bottom, rgb(0 0 0 / 0.45), rgb(0 0 0 / 0));
+    height: 200px;
+    background: linear-gradient(to bottom, rgb(0 0 0 / 0.5), rgb(0 0 0 / 0));
     z-index: 1;
     pointer-events: none;
-  }
-
-  .ij-hero--fullscreen .ij-hero__media {
-    position: relative;
   }
 
   .ij-hero--fullscreen:not(.ij-hero--no-image) .ij-hero__content {
