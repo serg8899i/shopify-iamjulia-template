@@ -97,7 +97,10 @@ const plan = await Promise.all(
   catalog.products.map(async (product) => {
     const card = await readCard(product.handle);
     if (card.status !== 'active') throw new Error(`Card ${product.handle} is ${card.status}; ask the owner first`);
-    const images = card.images.map((img) => ({
+    // usage=preview_only / dimensions_status=placeholder (e.g. infographics with sample sizes) never go to the store.
+    const skipped = card.images.filter((img) => img.usage === 'preview_only' || img.dimensions_status === 'placeholder');
+    if (skipped.length) console.log(`${product.handle}: skipping ${skipped.length} preview-only image(s)`);
+    const images = card.images.filter((img) => !skipped.includes(img)).map((img) => ({
       palette: img.palette && catalog.palettes[img.palette],
       main: img.role === 'main',
       path: join(args.content, img.file),
@@ -155,7 +158,7 @@ for (const { product, card, images } of plan) {
       tags: [
         'mockup',
         `content-${contentCommit.slice(0, 7)}`,
-        ...(card.personalized ? ['personalized'] : []),
+        ...((card.personalization?.name_required ?? card.personalized) ? ['personalized'] : []),
         ...(product.tags ?? []),
       ],
       status: 'ACTIVE',
